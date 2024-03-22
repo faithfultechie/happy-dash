@@ -1,5 +1,5 @@
 <div class="bg-white">
-    <h2 class="text-lg font-semibold font-display text-gray-700 tracking-tight mx-3 py-1.5">Add category
+    <h2 class="text-lg font-semibold font-display text-gray-700 tracking-tight mx-3 py-1.5">Add role
     </h2>
     <div class="border-t border-gray-300 mt-1"></div>
     <form wire:submit="save" method="POST" class="mx-2 py-4">
@@ -14,7 +14,7 @@
     <div class="bg-slate-100">
         <div class="px-4 py-4">
             <x-button  sm wire:click="$dispatch('closeModal')" flat label="Cancel & Close" />
-            <x-button sm wire:click="saveCategory" class="ml-2" blue label="Save" />
+            <x-button sm wire:click="saveRole" class="ml-2" blue label="Save" />
         </div>
     </div>
 </div>

@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Permission;
 
 class DeletePermissionModal extends ModalComponent
 {
-    public $permission, $id, $name;
+    public $permission, $name;
 
     public static function modalMaxWidth(): string
     {
@@ -34,8 +34,6 @@ class DeletePermissionModal extends ModalComponent
             throw $e;
         }
     }
-
-
 
     public function render()
     {

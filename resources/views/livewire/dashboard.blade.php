@@ -8,11 +8,11 @@
             <div class="min-w-0 flex-1">
                 <div class="flex items-center">
                     <img class="hidden h-16 w-16 rounded-full sm:block"
-                        src="https://api.dicebear.com/7.x/bottts/svg?seed={{ Auth::user()->name }}" alt="Avatar">
+                        src="https://api.dicebear.com/8.x/thumbs/svg?seed={{ Auth::user()->name }}" alt="Avatar">
                     <div>
                         <div class="flex items-center">
                             <img class="h-16 w-16 rounded-full sm:hidden"
-                                src="https://api.dicebear.com/7.x/bottts/svg?seed={{ Auth::user()->name }}"
+                                src="https://api.dicebear.com/8.x/thumbs/svg?seed={{ Auth::user()->name }}"
                                 alt="Avatar">
                             <h1 class="ml-3 text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:leading-9">
                                 {{ $greetingMessage }}, {{ Auth::user()->name }}</h1>

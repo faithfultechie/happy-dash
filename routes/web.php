@@ -29,7 +29,6 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');
     Route::get('categories', App\Livewire\Category\Index::class)->name('category.index');
     Route::get('contract/{contract}/show', App\Livewire\Contract\Show::class)->name('contract.show');
-    Route::get('contract/reports', App\Livewire\Contract\Report::class)->name('contract.report');
     Route::get('contracts', App\Livewire\Contract\Index::class)->name('contract.index');
 
     Route::get('admin/authentication-logs', App\Livewire\Activity\Index::class)->name('authentication.log');
