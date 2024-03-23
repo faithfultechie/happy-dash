@@ -172,7 +172,7 @@
                         <a href="{{ route('permission.index') }}" class="focus:outline-none">
                             <!-- Extend touch target to entire panel -->
                             <span class="absolute inset-0" aria-hidden="true"></span>
-                            Help and Support
+                            Permission & Roles
                         </a>
                     </h3>
                     <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et

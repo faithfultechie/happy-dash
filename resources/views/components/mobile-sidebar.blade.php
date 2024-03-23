@@ -40,7 +40,6 @@
                     $submenuItems = [
                         'Add Contract' => 'contract.create',
                         'Contracts' => 'contract.index',
-                        'Reports' => 'contract.report',
                     ];
                     $sortedSubmenuItems = collect($submenuItems)->sortKeys()->toArray();
                 @endphp
