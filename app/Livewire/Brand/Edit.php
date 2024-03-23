@@ -6,6 +6,7 @@ use App\Models\Brand;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class Edit extends Component
 {
@@ -27,9 +28,17 @@ class Edit extends Component
             'logo' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
         ]);
 
+        $currentLogoPath = $this->brand->logo;
+
         if ($this->logo) {
             $validatedData['logo'] = $this->logo->store('photos', 'public');
+
+            // If there's a current logo, delete it
+            if ($currentLogoPath) {
+                Storage::disk('public')->delete($currentLogoPath);
+            }
         }
+
         $this->brand->update($validatedData);
 
         session()->flash('success', 'Settings updated successfully.');
