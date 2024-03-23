@@ -22,9 +22,8 @@
         <div class="flex items-center">
             <a href="{{ route('login') }}">
                 <img class="h-16 w-auto mt-5"
-                    src="{{ isset($brand->logo) ? asset('app/public/' . $brand->logo) : 'https://api.dicebear.com/7.x/big-smile/svg' }}
-                "
-                    alt="Logo">
+                    src="{{ isset($brand->logo) ? asset('uploads/' . $brand->logo) : 'https://api.dicebear.com/7.x/big-smile/svg' }}
+                " alt="Logo">
             </a>
         </div>
     </div>

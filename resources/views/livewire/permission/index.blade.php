@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-12">
+    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-8">
         <div class="w-full md:w-9/12">
             <div class="flex justify-between">
                 <div>

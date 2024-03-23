@@ -28,12 +28,12 @@ class Edit extends Component
         ]);
 
         if ($this->logo) {
-            $validatedData['logo'] = $this->logo->store('documents', 'public');
+            $validatedData['logo'] = $this->logo->store('photos', 'public');
         }
         $this->brand->update($validatedData);
 
         session()->flash('success', 'Settings updated successfully.');
-        return redirect()->back();
+        return redirect()->route('settings');
     }
 
     public function render()

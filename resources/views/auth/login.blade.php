@@ -33,11 +33,11 @@
                 </form>
             </div>
 
-            {{-- <p class="my-5 text-center text-sm text-gray-500">
+            <p class="my-5 text-center text-sm text-gray-500">
                 Not a member?
                 <a href="{{ route('register') }}"
                     class="font-semibold leading-6 text-blue-600 hover:text-blue-500">Register</a>
-            </p> --}}
+            </p>
         </div>
     </div>
 @endsection

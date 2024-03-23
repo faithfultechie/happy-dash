@@ -29,7 +29,7 @@ class Index extends Component
         Brand::create($validatedData);
 
         session()->flash('success', 'Settings updated successfully.');
-        return redirect()->route('dashboard');
+        return redirect()->route('settings');
     }
 
     public function render()

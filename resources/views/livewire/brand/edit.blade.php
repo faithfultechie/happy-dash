@@ -45,7 +45,7 @@
                     FilePond.create($refs.input, {
                         @if($brand->logo)
                         files: [{
-                            source: '{{  asset('app/public/' . $brand->logo) }}',
+                            source: '{{  asset('uploads/' . $brand->logo) }}',
                             options: {
                                 type: 'local'
                             },
