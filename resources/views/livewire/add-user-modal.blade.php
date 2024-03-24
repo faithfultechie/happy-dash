@@ -37,6 +37,16 @@
                             <x-inputs.password label="Confirm password" wire:model="password_confirmation" />
                         </div>
                     </div>
+                    <p class="mt-4 font-medium text-gray-500 px-2">Role</p>
+                    <div class="border-t border-gray-300 mx-2 my-1"></div>
+                    <div class="flex flex-wrap">
+                        @foreach ($roles as $role)
+                            <div class="m-2">
+                                <x-radio id="{{ $role->id }}" wire:model="role" label="{{ $role->name }}"
+                                    value="{{ $role->name }}" blue sm />
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
                 <div class="bg-slate-100">
                     <div class="px-4 py-4">
@@ -53,16 +63,6 @@
                             <div class="m-2">
                                 <x-checkbox id="{{ $permission->id }}" wire:model="selectedPermissions"
                                     label="{{ $permission->description }}" primary value="{{ $permission->name }}" xl />
-                            </div>
-                        @endforeach
-                    </div>
-                    <p class="mt-4 font-medium text-gray-500 px-2">Role</p>
-                    <div class="border-t border-gray-300 mx-2 my-1"></div>
-                    <div class="flex flex-wrap">
-                        @foreach ($roles as $role)
-                            <div class="m-2">
-                                <x-radio id="{{ $role->id }}" wire:model="role" label="{{ $role->name }}"
-                                    value="{{ $role->name }}" blue sm />
                             </div>
                         @endforeach
                     </div>

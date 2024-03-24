@@ -38,8 +38,8 @@
                 title="Contracts">
                 @php
                     $submenuItems = [
-                        'Add Contract' => 'contract.create',
-                        'Contracts' => 'contract.index',
+                        'Add Document' => 'document.create',
+                        'Documents' => 'document.index',
                     ];
                     $sortedSubmenuItems = collect($submenuItems)->sortKeys()->toArray();
                 @endphp

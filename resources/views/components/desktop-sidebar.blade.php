@@ -28,7 +28,7 @@
                     Companies
                 </x-navigation-link>
 
-                <div class="text-xs font-semibold leading-6 text-gray-400 uppercase pl-2">Contracts</div>
+                <div class="text-xs font-semibold leading-6 text-gray-400 uppercase pl-2">Documents</div>
 
                 <x-navigation-submenu
                     svg="<svg fill='none' viewBox='0 0 30 25' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
@@ -38,12 +38,11 @@
                      1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504
                       1.125-1.125V11.25a9 9 0 0 0-9-9Z'/>
                 </svg>"
-                    title="Contracts">
+                    title="Documents">
                     @php
                         $submenuItems = [
-                            'Add Contract' => 'contract.create',
-                            'Contracts' => 'contract.index',
-                            'Categories' => 'category.index',
+                            'Add Document' => 'document.create',
+                            'Documents' => 'document.index',
                         ];
                         $sortedSubmenuItems = collect($submenuItems)->sortKeys()->toArray();
                     @endphp

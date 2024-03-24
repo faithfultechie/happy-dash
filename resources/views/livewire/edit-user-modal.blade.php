@@ -37,6 +37,24 @@
                             <x-inputs.password label="Confirm password" wire:model="password_confirmation" />
                         </div>
                     </div>
+                    <p class="mt-4 font-medium text-gray-500 px-2">Role</p>
+                    <div class="border-t border-gray-300 mx-2 my-1"></div>
+                    <div class="flex flex-wrap">
+                        @foreach ($roles as $role)
+                            <div class="m-2">
+                                <x-radio id="{{ $role->id }}" wire:model="role" label="{{ $role->name }}"
+                                    value="{{ $role->name }}" primary sm />
+                            </div>
+                        @endforeach
+                    </div>
+                    <p class="mt-4 font-medium text-gray-500 px-2">Login</p>
+                    <div class="border-t border-gray-300 mx-2 my-1"></div>
+                    <div class="flex flex-wrap">
+                        <div class="m-2">
+                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login" negative
+                                value="disable_login" />
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-slate-100">
                     <div class="px-4 py-4">
@@ -56,24 +74,6 @@
                                     value="{{ $permission->name }}" xl />
                             </div>
                         @endforeach
-                    </div>
-                    <p class="mt-4 font-medium text-gray-500 px-2">Role</p>
-                    <div class="border-t border-gray-300 mx-2 my-1"></div>
-                    <div class="flex flex-wrap">
-                        @foreach ($roles as $role)
-                            <div class="m-2">
-                                <x-radio id="{{ $role->id }}" wire:model="role" label="{{ $role->name }}"
-                                    value="{{ $role->name }}" primary sm />
-                            </div>
-                        @endforeach
-                    </div>
-                    <p class="mt-4 font-medium text-gray-500 px-2">Login</p>
-                    <div class="border-t border-gray-300 mx-2 my-1"></div>
-                    <div class="flex flex-wrap">
-                        <div class="m-2">
-                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login" negative
-                                value="disable_login" />
-                        </div>
                     </div>
                 </div>
             </div>

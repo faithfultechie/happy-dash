@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('force_password_change')->default(0);
             $table->boolean('disable_login')->default(0);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

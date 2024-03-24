@@ -1,6 +1,6 @@
 <div>
     <div>
-        <x-page-heading pageHeading="Add Contract" />
+        <x-page-heading pageHeading="Create Ticket" />
     </div>
 
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
@@ -12,7 +12,7 @@
                         class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a href="{{ route('contract.index') }}">Back to contracts</a>
+                    <a href="{{ route('contract.index') }}">Back to tickets</a>
                 </button>
             </div>
             <form wire:submit="save" method="POST">
@@ -26,35 +26,7 @@
                         <x-input label="Title" wire:model="title" />
                     </div>
                 </div>
-                <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <div>
-                        <x-select label="Company" placeholder="Select an option" :options="$this->company"
-                            wire:model.defer="company_id" option-label="name" option-value="id" />
-                        <div class="mt-1">
-                            <button type="button" wire:click="$dispatch('openModal', {component: 'add-company-modal'})"
-                                class="rounded-full bg-blue-800 p-1 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                        <x-select label="Category" placeholder="Select an option" :options="$this->category"
-                            wire:model.defer="category_id" option-label="name" option-value="id" />
-                        <div class="mt-1">
-                            <button type="button"
-                                wire:click="$dispatch('openModal', {component: 'add-category-modal'})"
-                                class="rounded-full bg-blue-800 p-1 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="mt-10 rounded-full h-6 w-6 bg-gray-400 flex items-center justify-center">
                     <span class="text-white text-sm font-medium">2</span>
                 </div>
@@ -86,20 +58,6 @@
                     <div>
                         <x-input label="Scope" wire:model="scope" />
                     </div>
-                    <div>
-                        <x-select label="Department" placeholder="Select an option" :options="$this->department"
-                            wire:model.defer="department_id" option-label="name" option-value="id" />
-                        <div class="mt-1">
-                            <button type="button"
-                                wire:click="$dispatch('openModal', {component: 'add-department-modal'})"
-                                class="rounded-full bg-blue-800 p-1 text-white shadow-sm hover:bg-blue-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path
-                                        d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
@@ -129,9 +87,9 @@
                         acceptedFileTypes: ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
                     });
                     FilePond.create($refs.input);">
-                        <x-input label="Contract document" type="file" wire:model="contract_filepath"
+                        <x-input label="" type="file" wire:model="contract_filepath"
                             x-ref="input" />
-                        <small class="text-xs text-gray-400">Supported files: pdf, word</small>
+                        <small class="text-xs text-gray-400">Supported files: jpg, png</small>
                     </div>
                 </div>
                 @error('contract_filepath')

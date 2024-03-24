@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Contracts\Auditable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Department extends Model implements Auditable
+class Document extends Model implements Auditable
 {
     use \OwenIt\Auditing\Auditable;
     use HasFactory;
@@ -15,10 +15,9 @@ class Department extends Model implements Auditable
 
     protected $guarded = ['id'];
 
-    public function generateTags(): array
+    public function company()
     {
-        return [
-            'department'
-        ];
+        return $this->belongsTo(Company::class);
     }
+
 }

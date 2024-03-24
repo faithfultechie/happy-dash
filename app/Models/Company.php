@@ -19,14 +19,9 @@ class Company extends Model implements Auditable
         'created_at' => 'datetime',
     ];
 
-    public function categories()
-    {
-        return $this->hasMany(Category::class);
-    }
-
     public function contracts()
     {
-        return $this->hasMany(Contract::class);
+        return $this->hasMany(Document::class);
     }
 
     public function generateTags(): array
