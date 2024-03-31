@@ -1,8 +1,12 @@
+@push('filepondCss')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+@endpush
+
 <div>
     <div>
         <x-page-heading pageHeading="Document Information" />
     </div>
-
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-md mt-5">
         <div>
             <div class="border-b border-gray-200 bg-white">
@@ -85,5 +89,12 @@
             </div>
         </div>
     </div>
-
 </div>
+
+@push('filepondJs')
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+@endpush

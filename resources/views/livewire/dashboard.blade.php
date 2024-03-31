@@ -7,37 +7,14 @@
         <div class="px-4 py-8 md:flex md:items-center md:justify-between">
             <div class="min-w-0 flex-1">
                 <div class="flex items-center">
-                    <img class="hidden h-16 w-16 rounded-full sm:block"
-                        src="https://api.dicebear.com/8.x/thumbs/svg?seed={{ Auth::user()->name }}" alt="Avatar">
                     <div>
                         <div class="flex items-center">
-                            <img class="h-16 w-16 rounded-full sm:hidden"
-                                src="https://api.dicebear.com/8.x/thumbs/svg?seed={{ Auth::user()->name }}"
-                                alt="Avatar">
                             <h1 class="ml-3 text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:leading-9">
-                                {{ $greetingMessage }}, {{ Auth::user()->name }}</h1>
+                               Hello 👋 {{ Auth::user()->name }}, </h1>
                         </div>
                         <dl class="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
-                            <dt class="sr-only">Company</dt>
-                            <dd class="flex items-center text-sm font-medium capitalize text-gray-400 sm:mr-6">
-                                <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20"
-                                    fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M4 16.5v-13h-.25a.75.75 0 010-1.5h12.5a.75.75 0 010 1.5H16v13h.25a.75.75 0 010 1.5h-3.5a.75.75 0 01-.75-.75v-2.5a.75.75 0 00-.75-.75h-2.5a.75.75 0 00-.75.75v2.5a.75.75 0 01-.75.75h-3.5a.75.75 0 010-1.5H4zm3-11a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zM7.5 9a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1zM11 5.5a.5.5 0 01.5-.5h1a.5.5 0 01.5.5v1a.5.5 0 01-.5.5h-1a.5.5 0 01-.5-.5v-1zm.5 3.5a.5.5 0 00-.5.5v1a.5.5 0 00.5.5h1a.5.5 0 00.5-.5v-1a.5.5 0 00-.5-.5h-1z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Ghana Maritime Authority
-                            </dd>
-                            <dt class="sr-only">Account status</dt>
-                            <dd
-                                class="mt-3 flex items-center text-sm font-medium capitalize text-gray-400 sm:mr-6 sm:mt-0">
-                                <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400" viewBox="0 0 20 20"
-                                    fill="currentColor" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Verified account
+                            <dd class="flex items-center text-sm font-medium text-gray-400 sm:mr-6">
+                                This is what we've got for you today.
                             </dd>
                         </dl>
                     </div>
@@ -137,7 +114,6 @@
                                 <tbody>
                                     <tr class="text-sm leading-6 text-gray-900">
                                         <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                                            <time datetime="2023-03-22">Today</time>
                                             <div
                                                 class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50">
                                             </div>
@@ -146,7 +122,7 @@
                                             </div>
                                         </th>
                                     </tr>
-                                    @forelse ($contracts as $contract)
+                                    @forelse ($documents as $document)
                                         <tr>
                                             <td class="relative py-5 pr-6">
                                                 <div class="flex gap-x-6">
@@ -160,15 +136,15 @@
                                                         <div class="flex items-start gap-x-3">
                                                             <div
                                                                 class="text-sm font-medium leading-6 text-gray-900 break-words">
-                                                                {{ $contract->title }}</div>
+                                                                {{ $document->title }}</div>
 
                                                             <div
                                                                 class="rounded-md py-1 px-2 text-xs font-medium ring-1 ring-inset text-green-700 bg-green-50 ring-green-600/20">
-                                                                {{ $contract->status }}</div>
+                                                                {{ $document->status }}</div>
                                                         </div>
                                                         <div class="text-sm leading-5 text-gray-500">
                                                             <div class="text-xs leading-6 text-gray-500">
-                                                                {{ $contract->created_at->diffForHumans() }}</div>
+                                                                {{ $document->created_at->diffForHumans() }}</div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -178,21 +154,12 @@
                                             </td>
                                             <td class="hidden py-5 pr-6 sm:table-cell">
                                                 <div
-                                                    class="flex items-center justify-end gap-x-2 sm:justify-start text-xs">
-                                                    <div
-                                                        class="flex-none rounded-full p-1 text-green-400 bg-green-400/10">
-                                                        <div class="h-1.5 w-1.5 rounded-full bg-current"></div>
-                                                    </div>
-                                                    <span class="text-gray-600">
-                                                        {{ date('d M Y', strtotime($contract->start_date)) }}</span>
-                                                </div>
-                                                <div
                                                     class="flex items-center justify-end gap-x-2 sm:justify-start mt-1 text-xs">
                                                     <div class="flex-none rounded-full p-1 text-red-400 bg-red-400/10">
                                                         <div class="h-1.5 w-1.5 rounded-full bg-current"></div>
                                                     </div>
                                                     <span class="text-gray-600">
-                                                        {{ date('d M Y', strtotime($contract->expiry_date)) }}</span>
+                                                        {{ date('d M, Y', strtotime($document->expiry_date)) }}</span>
                                                 </div>
                                             </td>
                                         </tr>

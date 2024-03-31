@@ -64,8 +64,9 @@
                                     <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                                         <div class="text-gray-900">{{ ucfirst($audit->event) }}
                                         </div>
-                                        {{-- <div class="mt-1 text-gray-500">{{ $audit->created_at->diffForHumans() }}
-                                        </div>  --}}
+                                        <div class="mt-1 text-gray-500">
+                                            {{ Carbon\Carbon::parse($audit->created_at)->diffForHumans() }}
+                                        </div>
                                     </td>
                                     <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                                         {{ $audit->auditable_type }}</td>

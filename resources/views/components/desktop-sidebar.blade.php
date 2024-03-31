@@ -20,6 +20,9 @@
                     </svg>
                     Dashboard
                 </x-navigation-link>
+
+                <div class="w-11/12 ml-2 border-t border-gray-200"></div>
+
                 <x-navigation-link route='company.index'>
                     <svg fill="none" viewBox="0 0 30 25" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -27,8 +30,6 @@
                     </svg>
                     Companies
                 </x-navigation-link>
-
-                <div class="text-xs font-semibold leading-6 text-gray-400 uppercase pl-2">Documents</div>
 
                 <x-navigation-submenu
                     svg="<svg fill='none' viewBox='0 0 30 25' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
@@ -51,7 +52,8 @@
                     @endforeach
                 </x-navigation-submenu>
 
-                <div class="text-xs font-semibold leading-6 text-gray-400 uppercase pl-2">Administrator</div>
+                <div class="w-11/12 ml-2 border-t border-gray-200"></div>
+
                 <x-navigation-link route='settings'>
                     <svg fill="none" viewBox="0 0 30 25" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round"

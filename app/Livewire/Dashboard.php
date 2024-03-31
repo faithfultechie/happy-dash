@@ -5,28 +5,17 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Contract;
+use App\Models\Document;
 
 class Dashboard extends Component
 {
-    public $contracts;
-
-    public $greetingMessage;
+    public $documents;
 
     public function mount()
     {
-        $currentTime = now();
-        $hour = $currentTime->hour;
-        $this->contracts = Contract::with('category', 'department', 'company')
+        $this->documents = Document::with('company')
             ->orderBy('created_at', 'desc')
             ->get();
-
-        if ($hour >= 6 && $hour < 12) {
-            $this->greetingMessage = 'Good Morning';
-        } elseif ($hour >= 12 && $hour < 18) {
-            $this->greetingMessage = 'Good Afternoon';
-        } else {
-            $this->greetingMessage = 'Good Evening';
-        }
     }
 
     public function render()

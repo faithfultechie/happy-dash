@@ -9,11 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet" />
+    @stack('filepondCss')
 
     <title>{{ $title ?? 'Page Title' }}</title>
+
     @livewireStyles
 </head>
 
@@ -30,7 +29,6 @@
     </style>
 
     <div x-data="{ open: false }" @keydown.window.escape="open = false">
-        <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
         <div x-show="open" class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
             <div class="fixed inset-0 bg-gray-900/80"></div>
             <div class="fixed inset-0 flex">
@@ -47,7 +45,6 @@
                         </button>
                     </div>
 
-                    <!-- Sidebar component, swap this element with another sidebar if you like -->
                     <x-mobile-sidebar></x-mobile-sidebar>
 
                 </div>
@@ -68,7 +65,6 @@
                         </svg>
                     </button>
 
-                    <!-- Separator -->
                     <div class="h-6 w-px bg-gray-200 lg:hidden" aria-hidden="true"></div>
 
                     <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
@@ -79,7 +75,6 @@
 
                             <x-notification-button></x-notification-button>
 
-                            <!-- Separator -->
                             <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-200" aria-hidden="true"></div>
 
                             <x-profile></x-profile>
@@ -98,11 +93,7 @@
     @livewireScripts
     @livewire('wire-elements-modal')
 
-    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
-    </script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+    @stack('filepondJs')
 
 </body>
 

@@ -35,9 +35,14 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('users', App\Livewire\User\Index::class)->name('user.index');
     Route::get('profile/security', App\Livewire\Profile\Security::class)->name('profile.security');
     Route::get('admin/settings', App\Livewire\Settings::class)->name('settings');
+    Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');
+    Route::get('company/{company}/show', App\Livewire\Company\Show::class)->name('company.show');
+
 
     Route::get('ticket/create', App\Livewire\Ticket\Create::class)->name('ticket.create');
-    Route::get('ticket/edit', App\Livewire\Ticket\Edit::class)->name('ticket.edit');
+    Route::get('ticket/{ticket}/edit', App\Livewire\Ticket\Edit::class)->name('ticket.edit');
+    Route::get('tickets', App\Livewire\Ticket\Index::class)->name('ticket.index');
+
 
     Route::controller(UserProfileController::class)->group(function () {
         Route::get('profile/account', 'account')

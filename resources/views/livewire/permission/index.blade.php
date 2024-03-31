@@ -16,7 +16,7 @@
         <div class="w-full md:w-9/12">
             <div class="flex justify-between">
                 <div>
-                    <h3 class="text-xl font-semibold text-slate-700">Permission Management</h3>
+                    <h3 class="text-xl font-semibold text-slate-700">Permission management</h3>
                     <p class="text-sm text-gray-500">All permissions that can be assigned to all users</p>
                 </div>
                 <div> <x-button sm wire:click="$dispatch('openModal', {component: 'add-permission-modal'})"
@@ -45,7 +45,7 @@
         <div class="w-full md:w-9/12">
             <div class="flex justify-between">
                 <div>
-                    <h3 class="text-xl font-semibold text-slate-700">Role Management</h3>
+                    <h3 class="text-xl font-semibold text-slate-700">Role management</h3>
                     <p class="text-sm text-gray-500">All roles that can be assigned to all users</p>
                 </div>
                 <div> <x-button sm wire:click="$dispatch('openModal', {component: 'add-role-modal'})" class="mt-6"

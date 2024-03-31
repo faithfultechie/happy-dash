@@ -15,10 +15,11 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('title');
             $table->string('category')->nullable();
-            $table->enum('status', ['open', 'closed', 'in_progress'])->default('open');
-            $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
+            $table->string('status')->nullable();
+            $table->string('priority')->nullable();
+            $table->string('attachments')->nullable();
             $table->foreignUlid('user_id')->constrained('users')->onDelete('cascade');
-            $table->longText('message');
+            $table->text('message');
             $table->softDeletes();
             $table->timestamps();
         });

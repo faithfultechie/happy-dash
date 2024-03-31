@@ -23,8 +23,8 @@
         <a href="{{ route('profile.security') }}" class="block px-3 py-1 text-sm leading-6 text-gray-800"
             role="menuitem" tabindex="-1" id="user-menu-item-0">Security</a>
         <div class="w-11/12 m-auto border-t border-gray-100"></div>
-        <a href="mailto:atoagustyn@gmail.com" target="_blank" class="block px-3 py-1 text-sm leading-6 text-gray-800" role="menuitem" tabindex="-1"
-            id="user-menu-item-0">Help</a>
+        <a href="{{ route('ticket.create') }}" class="block px-3 py-1 text-sm leading-6 text-gray-800" role="menuitem"
+            tabindex="-1" id="user-menu-item-0">Help</a>
         <div class="w-11/12 m-auto border-t border-gray-100"></div>
         <form method="POST" action="{{ route('logout') }}">
             @csrf

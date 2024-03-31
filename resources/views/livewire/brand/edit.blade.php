@@ -1,3 +1,8 @@
+@push('filepondCss')
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
+@endpush
+
 <div>
     <div>
         <x-page-heading pageHeading="Personalisation" />
@@ -45,7 +50,7 @@
                     FilePond.create($refs.input, {
                         @if($brand->logo)
                         files: [{
-                            source: '{{  asset('uploads/' . $brand->logo) }}',
+                            source: '{{ asset('uploads/' . $brand->logo) }}',
                             options: {
                                 type: 'local'
                             },
@@ -77,5 +82,12 @@
 
         </div>
     </div>
-
 </div>
+
+@push('filepondJs')
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
+    </script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+@endpush

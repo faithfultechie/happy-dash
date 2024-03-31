@@ -43,8 +43,8 @@
 
         <div class="sm:flex sm:items-center mt-12">
             <div class="sm:flex-auto">
-                <h1 class="text-base font-semibold leading-6 text-gray-900">Contract history</h1>
-                <p class="mt-2 text-sm text-gray-500">A recorded documentation of agreements between parties over time.
+                <h1 class="text-base font-semibold leading-6 text-gray-900">Document history</h1>
+                <p class="mt-2 text-sm text-gray-500">A recorded history of all documentations
                 </p>
             </div>
         </div>
