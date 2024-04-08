@@ -7,6 +7,7 @@
 <div>
     <x-page-heading pageHeading="Personalisation" />
 </div>
+
 <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
     <div class="text-right">
         <button type="button" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-gray-700">

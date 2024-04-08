@@ -26,7 +26,7 @@ class Edit extends Component
     public function save()
     {
         $validatedData = $this->validate([
-            'title' => ['required', 'string', Rule::unique(Ticket::class)],
+            'title' => ['required', 'string', Rule::unique(Ticket::class)->ignore($this->ticket)],
             'priority' => ['required', 'string', Rule::in([
                 'low', 'medium', 'high',
             ])],
@@ -37,13 +37,13 @@ class Edit extends Component
             'message' => ['required', 'string'],
         ]);
 
-
         if ($this->attachments) {
             $attachments = [];
+
             foreach ($this->attachments as $attachment) {
                 $attachments[] = $attachment->store('documents', 'public');
             }
-            $validatedData['attachments'] = implode(',', $attachments);
+            $validatedData['attachments'] = implode(',',[ ...$attachments, ...$this->ticket->attachmentList  ]);
         }
 
         $validatedData['user_id'] = Auth::user()->id;
@@ -52,6 +52,7 @@ class Edit extends Component
         session()->flash('success', 'Ticket updated successfully.');
         return redirect()->route('dashboard');
     }
+
     public function render()
     {
         return view('livewire.ticket.edit');

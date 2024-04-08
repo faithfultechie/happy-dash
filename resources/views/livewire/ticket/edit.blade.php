@@ -16,7 +16,7 @@
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a href="">Back to tickets</a>
+                    <a href="{{ route('ticket.index') }}">Back to tickets</a>
                 </button>
             </div>
             <form wire:submit="save" method="POST">
@@ -71,8 +71,7 @@
                     </div>
                 </div>
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <div wire:ignore x-data x-init="
-                    FilePond.registerPlugin(FilePondPluginFileValidateType);
+                    <div wire:ignore x-data x-init="FilePond.registerPlugin(FilePondPluginFileValidateType);
                     FilePond.registerPlugin(FilePondPluginImagePreview);
                     FilePond.registerPlugin(FilePondPluginImageValidateSize);
                     FilePond.setOptions({
@@ -85,17 +84,17 @@
                             }
                         },
                         acceptedFileTypes: ['image/png', 'image/gif', 'image/jpeg'],
-                        allowMultiple: true                    });
+                        allowMultiple: true
+                    });
 
                     FilePond.create($refs.input, {
                         files: [
-                            @foreach($ticket->attachmentList as $attachment)
-                                {
-                                    source: '{{ asset('uploads/' . $attachment) }}',
-                                    options: {
-                                        type: 'local'
-                                    }
-                                },
+                            @foreach($ticket->attachmentList as $attachment) {
+                                source: '{{ asset('uploads/' . $attachment) }}',
+                                options: {
+                                    type: 'local'
+                                }
+                            },
                             @endforeach
                         ],
                         server: {
@@ -111,8 +110,7 @@
                                 @this.removeUpload('attachments', filename, load);
                             }
                         }
-                    });
-                " FilePond.create($refs.input);">
+                    });" FilePond.create($refs.input);">
                         <x-input label="Attachment" type="file" wire:model="attachments" x-ref="input" multiple />
                         <small class="text-xs text-gray-400">Supported formats: JPG, PNG</small>
                     </div>

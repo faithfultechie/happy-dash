@@ -100,7 +100,7 @@
                     <h2 class="mx-auto max-w-2xl text-xl font-semibold leading-6 text-gray-900 lg:mx-0 lg:max-w-none">
                         Recent activity</h2>
                 </div>
-                <div class="mt-6 overflow-hidden border-t border-gray-100">
+                <div class="mt-3 overflow-hidden border-t border-gray-100">
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
                             <table class="w-full text-left">
@@ -112,19 +112,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="text-sm leading-6 text-gray-900">
-                                        <th scope="colgroup" colspan="3" class="relative isolate py-2 font-semibold">
-                                            <div
-                                                class="absolute inset-y-0 right-full -z-10 w-screen border-b border-gray-200 bg-gray-50">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 left-0 -z-10 w-screen border-b border-gray-200 bg-gray-50">
-                                            </div>
-                                        </th>
-                                    </tr>
                                     @forelse ($documents as $document)
                                         <tr>
-                                            <td class="relative py-5 pr-6">
+                                            <td class="relative pt-2">
                                                 <div class="flex gap-x-6">
                                                     <svg class="hidden h-6 w-5 flex-none text-gray-400 sm:block"
                                                         fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -148,9 +138,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="absolute bottom-0 right-full h-px w-screen bg-gray-100">
-                                                </div>
-                                                <div class="absolute bottom-0 left-0 h-px w-screen bg-gray-100"></div>
                                             </td>
                                             <td class="hidden py-5 pr-6 sm:table-cell">
                                                 <div

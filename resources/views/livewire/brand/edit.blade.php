@@ -44,8 +44,7 @@
                             }
                         },
                         acceptedFileTypes: ['image/png', 'image/gif', 'image/jpeg'],
-                        labelIdle: `Drag & Drop your picture or <span class='filepond--label-action'>Browse</span>`,
-
+                        labelIdle: `Drag & Drop your picture or <span class='filepond--label-action'>Browse</span>`
                     });
                     FilePond.create($refs.input, {
                         @if($brand->logo)
@@ -60,28 +59,24 @@
                                 fetch(uniqueFileId)
                                     .then(res => res.blob())
                                     .then(load);
-                            },
-                            process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                                @this.upload('logo', file, load, error, progress)
-                            },
-                            revert: (filename, load) => {
-                                @this.removeUpload('logo', filename, load)
                             }
-                        },
+                        }
                         @endif
-                    });" FilePond.create($refs.input);">
-                        <x-input label="Logo" hidden type="file" wire:model="logo" x-ref="input" />
-                        <small class="text-xs text-gray-400">Supported files: JPG, PNG</small>
-                    </div>
-                </div>
-                @error('logo')
-                    <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
-                @enderror
-                <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
-            </form>
+                    });">
+                    <x-input label="Logo" hidden type="file" wire:model="logo" x-ref="input" />
 
+                    </div>
+                    <small class="text-xs text-gray-400">Supported files: JPG, PNG</small>
+                </div>
         </div>
+        @error('logo')
+            <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
+        @enderror
+        <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
+        </form>
+
     </div>
+</div>
 </div>
 
 @push('filepondJs')

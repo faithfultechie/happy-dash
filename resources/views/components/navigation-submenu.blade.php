@@ -1,5 +1,5 @@
 <div x-data="{ showMenu: false }" x-on:click.away="showMenu = false" class="space-y-1 mb-0.5">
-    <a class="text-gray-600 cursor-pointer hover:text-orange-600 hover:bg-gray-50 group flex rounded-md p-2 text-sm leading-6 font-semibold"
+    <a wire:navigate class="text-gray-600 cursor-pointer hover:text-orange-600 hover:bg-gray-50 group flex rounded-md p-2 text-sm leading-6 font-semibold"
         x-state:on="Current" x-state:off="Default" aria-controls="sub-menu-1" @click="showMenu = !showMenu"
         aria-expanded="false" x-bind:aria-expanded="showMenu.toString()"
         x-state-description="Current: &quot;bg-gray-100 text-gray-900&quot;, Default: &quot;bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900&quot;">

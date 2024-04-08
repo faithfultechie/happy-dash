@@ -7,13 +7,9 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $tickets;
-    public function mount()
-    {
-        $this->tickets = Ticket::get();
-    }
     public function render()
     {
-        return view('livewire.ticket.index');
+        $tickets = Ticket::all();
+        return view('livewire.ticket.index', compact('tickets'));
     }
 }
