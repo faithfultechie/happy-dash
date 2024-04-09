@@ -32,7 +32,7 @@ export default {
             "pg-primary": colors.gray,
         },
         fontFamily: {
-            sans: ["DM Sans", "sans-serif"],
+            sans: ["Barlow", "sans-serif"],
         },
     },
     plugins: [],

@@ -46,8 +46,7 @@
                         <x-input label="Expiry date" type="date" wire:model="expiry_date" />
                     </div>
                     <div>
-                        <x-select label="Status" placeholder="Select status" :options="['Active', 'Archived', 'Draft', 'Pending', 'Terminated']"
-                            wire:model="status" />
+                        <x-select label="Status" placeholder="Select status" :options="['Active', 'Archived', 'Draft', 'Pending', 'Terminated']" wire:model="status" />
                     </div>
                 </div>
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
@@ -73,7 +72,7 @@
                 @error('document_filepath')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
                 @enderror
-                <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
+                <x-button  wire:loading.delay.class="opacity-50" md wire:click="save" class="mt-6" blue label="Save changes" />
             </form>
         </div>
     </div>
