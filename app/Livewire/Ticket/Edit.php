@@ -25,6 +25,7 @@ class Edit extends Component
 
     public function save()
     {
+
         $validatedData = $this->validate([
             'title' => ['required', 'string', Rule::unique(Ticket::class)->ignore($this->ticket)],
             'priority' => ['required', 'string', Rule::in([
@@ -38,29 +39,25 @@ class Edit extends Component
         ]);
 
         $attachments = [];
-        if ($this->attachments) {
-
+        if (!empty($this->attachments)) {
             foreach ($this->attachments as $attachment) {
                 $attachments[] = $attachment->store('documents', 'public');
             }
         }
 
-        $oldFIles = [];
-        $removedFiles = explode('|', $this->removed_files);
+        $oldFiles = array_diff(
+            $this->ticket->attachmentList,
+            explode('|', $this->removed_files ?: '')
+        );
 
-        foreach ($removedFiles as $removedFile) {
-            if ($removedFile) {
-                Storage::disk('public')->delete($removedFile);
+        if (!empty($this->removed_files)) {
+            $removedFiles = explode('|', $this->removed_files);
+            foreach ($removedFiles as $file) {
+                Storage::disk('public')->delete($file);
             }
         }
 
-        foreach ($this->ticket->attachmentList as $image) {
-            if (!in_array($image, $removedFiles)) {
-                $oldFIles[] = $image;
-            }
-        }
-
-        $validatedData['attachments'] = implode(',', [...$attachments, ...$oldFIles]);
+        $validatedData['attachments'] = implode(',', array_merge($attachments, $oldFiles));
 
         $validatedData['user_id'] = Auth::user()->id;
         $this->ticket->update($validatedData);
