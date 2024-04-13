@@ -5,7 +5,7 @@
 
 <div>
     <div>
-        <x-page-heading pageHeading="Create Ticket" />
+        <x-page-heading pageHeading="Edit Ticket" />
     </div>
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <div class="w-full md:w-9/12">
@@ -54,10 +54,6 @@
                                 <div class="flex items-center">
                                     <x-radio id="closed" label="Closed" wire:model="status" value="closed" />
                                 </div>
-                                <div class="flex items-center">
-                                    <x-radio id="in_progress" label="In progress" wire:model="status"
-                                        value="in_progress" />
-                                </div>
                             </div>
                         </fieldset>
                     </div>
@@ -70,6 +66,8 @@
                         <x-textarea label="Message" wire:model="message" />
                     </div>
                 </div>
+                <input type="hidden" id="removed_files" wire:model="removed_files">
+
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
                     <div wire:ignore x-data x-init="FilePond.registerPlugin(FilePondPluginFileValidateType);
                     FilePond.registerPlugin(FilePondPluginImagePreview);
@@ -80,6 +78,7 @@
                                 @this.upload('attachments', file, load, error, progress);
                             },
                             revert: (filename, load) => {
+
                                 @this.removeUpload('attachments', filename, load);
                             }
                         },
@@ -107,6 +106,7 @@
                                 @this.upload('attachments', file, load, error, progress);
                             },
                             revert: (filename, load) => {
+
                                 @this.removeUpload('attachments', filename, load);
                             }
                         }
@@ -118,11 +118,27 @@
                 @error('attachments.*')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
                 @enderror
-                <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
+                <x-button md wire:click="save" class="mt-6 font-medium leading-6" blue label="Save changes" />
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    //TODO:: improve this later
+    let removedInput = document.getElementById('removed_files');
+    document.addEventListener('FilePond:removefile', (e) => {
+        if (removedInput.value == '') {
+            removedInput.value = 'documents/' + e.detail.file.file.name
+        } else {
+            removedInput.value += '|documents/' + e.detail.file.file.name
+        }
+
+        removedInput.dispatchEvent(new Event('input'))
+        console.log(e.detail.file.file.name, e)
+
+    });
+</script>
 
 @push('filepondJs')
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>

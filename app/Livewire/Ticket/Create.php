@@ -22,7 +22,7 @@ class Create extends Component
                 'low', 'medium', 'high',
             ])],
             'status' => ['required', 'string', Rule::in([
-                'open', 'closed', 'in_progress',
+                'open', 'closed',
             ])],
             'attachments.*' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
             'message' => ['required', 'string'],

@@ -72,7 +72,7 @@
                 @error('document_filepath')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
                 @enderror
-                <x-button  wire:loading.delay.class="opacity-50" md wire:click="save" class="mt-6" blue label="Save changes" />
+                <x-button  wire:loading.delay.class="opacity-50" md wire:click="save" class="mt-6 font-medium leading-6" blue label="Save changes" />
             </form>
         </div>
     </div>

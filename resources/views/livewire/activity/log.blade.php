@@ -42,10 +42,10 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             @foreach ($audits as $audit)
                                 <tr>
-                                    <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm sm:pl-0">
                                         <div class="flex items-center">
-                                            <div class="h-11 w-11 flex-shrink-0">
-                                                <img class="h-11 w-11 rounded-full"
+                                            <div class="h-8 w-8 flex-shrink-0">
+                                                <img class="h-8 w-8 rounded-full"
                                                     src="https://api.dicebear.com/7.x/initials/svg?seed={{ $audit->name }}"
                                                     alt="Avatar">
                                             </div>
@@ -57,18 +57,18 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         <div class="text-gray-900">{{ $audit->ip_address }}</div>
                                         <div class="mt-1 text-gray-500">{{ $agent->browser() }}</div>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         <div class="text-gray-900">{{ ucfirst($audit->event) }}
                                         </div>
                                         <div class="mt-1 text-gray-500">
                                             {{ Carbon\Carbon::parse($audit->created_at)->diffForHumans() }}
                                         </div>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         {{ $audit->auditable_type }}</td>
                                 </tr>
                             @endforeach

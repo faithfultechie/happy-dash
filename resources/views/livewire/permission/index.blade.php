@@ -23,7 +23,8 @@
                         class="mt-6" blue label="Add permission" /></div>
             </div>
             <div class="border-t border-gray-200 my-4"></div>
-            @foreach ($permissions as $permission)
+
+            @forelse ($permissions as $permission)
                 <span
                     class="inline-flex items-center gap-x-1 m-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                     {{ $permission->name }}
@@ -37,7 +38,9 @@
                         <span class="absolute -inset-1"></span>
                     </button>
                 </span>
-            @endforeach
+            @empty
+                <p class="text-center text-sm text-gray-700">No records found</p>
+            @endforelse
         </div>
     </div>
 
@@ -52,7 +55,7 @@
                         blue label="Add role" /></div>
             </div>
             <div class="border-t border-gray-200 my-4"></div>
-            @foreach ($roles as $role)
+            @forelse ($roles as $role)
                 <span
                     class="inline-flex items-center gap-x-1 m-1 rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">
                     {{ $role->name }}
@@ -66,7 +69,9 @@
                         <span class="absolute -inset-1"></span>
                     </button>
                 </span>
-            @endforeach
+            @empty
+                <p class="text-center text-sm text-gray-700">No records found</p>
+            @endforelse
         </div>
     </div>
 </div>

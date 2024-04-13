@@ -66,7 +66,7 @@
                 <form action="{{ url('user/two-factor-recovery-codes') }}" method="POST">
                     @csrf
                     <div class="flex flex-wrap gap-xs margin-top-md">
-                        <x-button type="submit" outline sm blue label="Regenerate codes" class="mt-4 uppercase" />
+                        <x-button type="submit" outline sm blue label="Regenerate codes" class="mt-4 font-medium leading-6 uppercase" />
                     </div>
                 </form>
             </div>
@@ -77,7 +77,7 @@
             <div>
                 <form action="{{ url('user/two-factor-authentication') }}" method="POST">
                     @csrf
-                    <x-button md type="submit" blue label="Enable 2FA" />
+                    <x-button md type="submit" blue label="Enable 2FA" class="font-medium leading-6" />
                 </form>
             </div>
         @endif
@@ -87,7 +87,7 @@
                 <form action="{{ url('user/two-factor-authentication') }}" method="POST">
                     @csrf
                     @method('delete')
-                    <x-button md type="submit" red label="Disable 2FA" />
+                    <x-button md type="submit" class="mt-6 font-medium leading-6" red label="Disable 2FA" />
                 </form>
             </div>
         @endif

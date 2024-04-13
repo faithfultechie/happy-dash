@@ -20,6 +20,7 @@ use App\Http\Controllers\ForcePasswordChangeController;
 Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.change'])->group(function () {
 
     Route::get('dashboard', Dashboard::class)->name('dashboard');
+    Route::get('dashboard/metrics', Dashboard\Metrics::class)->name('dashboard.metrics');
 
     Route::get('document/create', App\Livewire\Document\Create::class)->name('document.create');
     Route::get('document/{document}/edit', App\Livewire\Document\Edit::class)->name('document.edit');
@@ -38,11 +39,10 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');
     Route::get('company/{company}/show', App\Livewire\Company\Show::class)->name('company.show');
 
-
     Route::get('ticket/create', App\Livewire\Ticket\Create::class)->name('ticket.create');
     Route::get('ticket/{ticket}/edit', App\Livewire\Ticket\Edit::class)->name('ticket.edit');
     Route::get('tickets', App\Livewire\Ticket\Index::class)->name('ticket.index');
-
+    Route::get('admin/tickets', App\Livewire\Ticket\AdminTickets::class)->name('admin.tickets');
 
     Route::controller(UserProfileController::class)->group(function () {
         Route::get('profile/account', 'account')

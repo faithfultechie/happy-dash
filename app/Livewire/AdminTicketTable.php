@@ -1,0 +1,145 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Ticket;
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use PowerComponents\LivewirePowerGrid\Button;
+use PowerComponents\LivewirePowerGrid\Column;
+use PowerComponents\LivewirePowerGrid\Footer;
+use PowerComponents\LivewirePowerGrid\Header;
+use PowerComponents\LivewirePowerGrid\PowerGrid;
+use PowerComponents\LivewirePowerGrid\Exportable;
+use PowerComponents\LivewirePowerGrid\Facades\Rule;
+use PowerComponents\LivewirePowerGrid\Facades\Filter;
+use PowerComponents\LivewirePowerGrid\PowerGridFields;
+use PowerComponents\LivewirePowerGrid\Traits\WithExport;
+use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+
+final class AdminTicketTable extends PowerGridComponent
+{
+    use WithExport;
+
+    public function setUp(): array
+    {
+        $this->showCheckBox();
+
+        return [
+            Exportable::make('export')
+                ->striped()
+                ->type(Exportable::TYPE_XLS, Exportable::TYPE_CSV),
+            Header::make()->showSearchInput()
+                ->showToggleColumns(),
+            Footer::make()
+                ->showPerPage()
+                ->showRecordCount(),
+        ];
+    }
+
+    public function datasource(): Builder
+    {
+        return Ticket::query();
+    }
+
+    public function relationSearch(): array
+    {
+        return [];
+    }
+
+    public function fields(): PowerGridFields
+    {
+        return PowerGrid::fields()
+            ->add('title')
+            ->add('status')
+            ->add('status_label', function ($ticket) {
+                return ($ticket->status == "open") ? '<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">Open</span>
+            ' : '<span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700">Closed</span>
+            ';
+            })
+            ->add('user_name', function ($ticket) {
+                return $ticket->user->name;
+            })
+            ->add('created_at')
+            ->add('created_at_format', function ($ticket) {
+                return $ticket->dateForHumans();
+            });
+    }
+
+    public function columns(): array
+    {
+        return [
+            Column::make('Title', 'title')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Status', 'status_label', 'status')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Created at', 'created_at_format', 'created_at')
+                ->sortable()
+                ->searchable(),
+
+            Column::make('Author', 'user_name', 'user_id')
+                ->sortable()
+                ->searchable(),
+
+            Column::action('Action')
+        ];
+    }
+
+    public function filters(): array
+    {
+        return [
+            Filter::datepicker('created_at', 'created_at'),
+        ];
+    }
+
+    #[\Livewire\Attributes\On('edit')]
+    public function edit($rowId): void
+    {
+        $this->js('alert(' . $rowId . ')');
+    }
+
+    public function actions(Ticket $row): array
+    {
+        return [
+            Button::make('edit', '
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg> Edit')
+                ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600')
+                ->route('ticket.edit', [$row->id]),
+
+            Button::make('close', '
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg> Close')
+                ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-red-600 hover:text-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600')
+                ->openModal('edit-ticket-modal', [$row->id]),
+
+            Button::make('open', '
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+                </svg> Reopen')
+                ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-green-600 hover:text-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600')
+                ->openModal('edit-ticket-modal', [$row->id]),
+        ];
+    }
+
+
+    public function actionRules($ticket): array
+    {
+        return [
+            Rule::button('close')
+                ->when(fn ($ticket) => $ticket->status == 'closed')
+                ->hide(),
+
+            Rule::button('open')
+                ->when(fn ($ticket) => $ticket->status == 'open')
+                ->hide(),
+        ];
+    }
+}

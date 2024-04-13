@@ -43,10 +43,10 @@
                         <tbody class="divide-y divide-gray-200 bg-white">
                             @foreach ($authentication_logs as $authentication_log)
                                 <tr>
-                                    <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+                                    <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm sm:pl-0">
                                         <div class="flex items-center">
-                                            <div class="h-11 w-11 flex-shrink-0">
-                                                <img class="h-11 w-11 rounded-full"
+                                            <div class="h-8 w-8 flex-shrink-0">
+                                                <img class="h-8 w-8 rounded-full"
                                                     src="https://api.dicebear.com/7.x/initials/svg?seed={{ $authentication_log->name }}"
                                                     alt="Avatar">
                                             </div>
@@ -58,17 +58,17 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         <div class="text-gray-900">{{ $agent->device() }}</div>
                                         <div class="mt-1 text-gray-500">{{ $agent->browser() }}</div>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         <span
                                             class="inline-flex items-center rounded-md {{ $authentication_log->login_successful ? 'bg-green-50 text-green-700 ring-green-600/20' : 'bg-red-50 text-red-700 ring-red-600/20' }}
                                                 px-2 py-1 text-xs font-medium ring-1 ring-inset">
                                             {{ $authentication_log->login_successful ? 'Successful' : 'Failed' }}</span>
                                     </td>
-                                    <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                                    <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                         {{ $authentication_log->ip_address }}</td>
                                 </tr>
                             @endforeach

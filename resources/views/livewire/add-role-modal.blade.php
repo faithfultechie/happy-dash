@@ -14,7 +14,7 @@
     <div class="bg-slate-100">
         <div class="px-4 py-4">
             <x-button  sm wire:click="$dispatch('closeModal')" flat label="Cancel & Close" />
-            <x-button sm wire:click="saveRole" class="ml-2" blue label="Save" />
+            <x-button sm wire:click="saveRole" class="ml-2 font-medium leading-6" blue label="Save" />
         </div>
     </div>
 </div>

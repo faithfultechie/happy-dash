@@ -12,12 +12,9 @@ class Document extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
     use HasFactory;
     use HasUlids;
-
     protected $guarded = ['id'];
-
     public function company()
     {
         return $this->belongsTo(Company::class);
     }
-
 }

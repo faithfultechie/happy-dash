@@ -10,7 +10,7 @@
                     <div>
                         <div class="flex items-center">
                             <h1 class="ml-3 text-2xl font-semibold leading-7 text-gray-900 sm:truncate sm:leading-9">
-                               Hello 👋 {{ Auth::user()->name }}, </h1>
+                                Hello 👋 {{ Auth::user()->name }}, </h1>
                         </div>
                         <dl class="mt-6 flex flex-col sm:ml-3 sm:mt-1 sm:flex-row sm:flex-wrap">
                             <dd class="flex items-center text-sm font-medium text-gray-400 sm:mr-6">
@@ -94,6 +94,10 @@
     </div>
 
     <div class="bg-white rounded-lg shadow my-8">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <div class="bg-white rounded-lg shadow my-8">
         <div class="space-y-16 py-5 xl:space-y-10">
             <div>
                 <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -161,5 +165,10 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      ALpine.data('chart',() =>)
+    </script>
 
 </div>

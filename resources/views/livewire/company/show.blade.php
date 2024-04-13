@@ -34,9 +34,9 @@
                         {{ $company->address }}</dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-6 grid grid-cols-3 sm:gap-2 sm:px-3">
-                    <dt class="text-sm font-medium leading-6 text-gray-900">Contact</dt>
+                    <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
                     <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1 sm:mt-0">
-                        {{ $company->email }}</dd>
+                        <a href="mailto:{{ $company->email }}" class="underline">{{ $company->email }}</a></dd>
                 </div>
             </dl>
         </div>

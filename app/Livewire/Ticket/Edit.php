@@ -13,7 +13,7 @@ class Edit extends Component
 {
     use WithFileUploads;
     public $attachments = [];
-    public $ticket, $title, $category, $priority, $status, $message;
+    public $ticket, $title, $category, $priority, $status, $message, $removed_files;
 
     public function mount(Ticket $ticket)
     {
@@ -31,20 +31,36 @@ class Edit extends Component
                 'low', 'medium', 'high',
             ])],
             'status' => ['required', 'string', Rule::in([
-                'open', 'closed', 'in_progress',
+                'open', 'closed',
             ])],
             'attachments.*' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
             'message' => ['required', 'string'],
         ]);
 
+        $attachments = [];
         if ($this->attachments) {
-            $attachments = [];
 
             foreach ($this->attachments as $attachment) {
                 $attachments[] = $attachment->store('documents', 'public');
             }
-            $validatedData['attachments'] = implode(',',[ ...$attachments, ...$this->ticket->attachmentList  ]);
         }
+
+        $oldFIles = [];
+        $removedFiles = explode('|', $this->removed_files);
+
+        foreach ($removedFiles as $removedFile) {
+            if ($removedFile) {
+                Storage::disk('public')->delete($removedFile);
+            }
+        }
+
+        foreach ($this->ticket->attachmentList as $image) {
+            if (!in_array($image, $removedFiles)) {
+                $oldFIles[] = $image;
+            }
+        }
+
+        $validatedData['attachments'] = implode(',', [...$attachments, ...$oldFIles]);
 
         $validatedData['user_id'] = Auth::user()->id;
         $this->ticket->update($validatedData);

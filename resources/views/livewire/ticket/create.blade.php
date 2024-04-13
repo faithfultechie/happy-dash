@@ -8,7 +8,6 @@
         <x-page-heading pageHeading="Create Ticket" />
     </div>
 
-    {{  $errors }}
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <div class="w-full md:w-9/12">
             <div class="text-right">
@@ -18,7 +17,7 @@
                         stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                     </svg>
-                    <a href="">Back to tickets</a>
+                    <a href="{{ route('ticket.index') }}">Back to tickets</a>
                 </button>
             </div>
             <form wire:submit="save" method="POST">
@@ -56,10 +55,6 @@
                                 <div class="flex items-center">
                                     <x-radio id="closed" label="Closed" wire:model="status" value="closed" />
                                 </div>
-                                <div class="flex items-center">
-                                    <x-radio id="in_progress" label="In progress" wire:model="status"
-                                        value="in_progress" />
-                                </div>
                             </div>
                         </fieldset>
                     </div>
@@ -88,14 +83,14 @@
                         acceptedFileTypes: ['image/png', 'image/gif', 'image/jpeg'],
                     });
                     FilePond.create($refs.input);">
-                        <x-input label="Attachment" type="file" wire:model="attachments" x-ref="input" multiple/>
+                        <x-input label="Attachment" type="file" wire:model="attachments" x-ref="input" multiple />
                         <small class="text-xs text-gray-400">Supported formats: JPG, PNG</small>
                     </div>
                 </div>
                 @error('attachments.*')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
                 @enderror
-                <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
+                <x-button md wire:click="save" class="mt-6 font-medium leading-6" blue label="Save changes" />
             </form>
         </div>
     </div>
