@@ -68,6 +68,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.ticket.edit');
+        $documentsPath = 'documents';
+        return view('livewire.ticket.edit', compact('documentsPath'));
     }
 }

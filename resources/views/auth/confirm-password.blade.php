@@ -5,9 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <x-font></x-font>
     <title>{{ $title ?? 'Page Title' }}</title>
     <wireui:scripts />
     @livewireStyles
@@ -41,7 +39,8 @@
                     <h2 class="text-center text-2xl font-semibold leading-9 tracking-tight text-gray-900">Confirm
                         access
                     </h2>
-                    <p class="text-gray-500 mt-2 text-sm">This is a secure area. Please enter your password to confirm access
+                    <p class="text-gray-500 mt-2 text-sm">This is a secure area. Please enter your password to confirm
+                        access
                     </p>
                     <form class="space-y-6" action="{{ url('user/confirm-password') }}" method="POST">
                         @csrf

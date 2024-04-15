@@ -125,18 +125,11 @@
 </div>
 
 <script>
-    //TODO:: improve this later
-    let removedInput = document.getElementById('removed_files');
     document.addEventListener('FilePond:removefile', (e) => {
-        if (removedInput.value == '') {
-            removedInput.value = 'documents/' + e.detail.file.file.name
-        } else {
-            removedInput.value += '|documents/' + e.detail.file.file.name
-        }
-
-        removedInput.dispatchEvent(new Event('input'))
-        console.log(e.detail.file.file.name, e)
-
+        const removedInput = document.getElementById('removed_files');
+        const fileName = `{{ $documentsPath }}/${e.detail.file.file.name}`;
+        removedInput.value = removedInput.value ? `${removedInput.value}|${fileName}` : fileName;
+        removedInput.dispatchEvent(new Event('input'));
     });
 </script>
 

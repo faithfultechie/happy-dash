@@ -20,7 +20,7 @@ class Index extends Component
         $validatedData = $this->validate([
             'app_name' => ['required', 'string'],
             'footer_links' => ['string', 'nullable'],
-            'logo' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
+            'logo' => ['required', 'file', 'mimes:jpg,png,jpeg', 'nullable'],
         ]);
 
         if ($this->logo) {
