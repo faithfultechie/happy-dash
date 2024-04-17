@@ -30,59 +30,25 @@
                         <x-textarea label="Footer links" wire:model="footer_links" />
                     </div>
                 </div>
-                <div class="mt-5">
-                    <div class="w-1/5" wire:ignore x-data x-init="FilePond.registerPlugin(FilePondPluginFileValidateType);
-                    FilePond.registerPlugin(FilePondPluginImagePreview);
-                    FilePond.registerPlugin(FilePondPluginImageValidateSize);
-                    FilePond.setOptions({
-                        server: {
-                            process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                                @this.upload('logo', file, load, error, progress)
-                            },
-                            revert: (filename, load) => {
-                                @this.removeUpload('logo', filename, load)
-                            }
-                        },
-                        acceptedFileTypes: ['image/png', 'image/gif', 'image/jpeg'],
-                        labelIdle: `Drag & Drop your picture or <span class='filepond--label-action'>Browse</span>`
-                    });
-                    FilePond.create($refs.input, {
-                        @if($brand->logo)
-                        files: [{
-                            source: '{{ asset('uploads/' . $brand->logo) }}',
-                            options: {
-                                type: 'local'
-                            },
-                        }],
-                        server: {
-                            load: (uniqueFileId, load) => {
-                                fetch(uniqueFileId)
-                                    .then(res => res.blob())
-                                    .then(load);
-                            }
-                        }
-                        @endif
-                    });">
-                    <x-input label="Logo" hidden type="file" wire:model="logo" x-ref="input" />
-
-                    </div>
-                    <small class="text-xs text-gray-400">Supported files: JPG, PNG</small>
+                <div class="w-2/5 grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
+                    <x-filepond-single-preview label="Logo" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
+                        supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="logo"
+                        :attachment="$brand->logo" />
                 </div>
+                @error('logo')
+                    <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
+                @enderror
+                <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
+            </form>
         </div>
-        @error('logo')
-            <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
-        @enderror
-        <x-button md wire:click="save" class="mt-6" blue label="Save changes" />
-        </form>
-
     </div>
-</div>
 </div>
 
 @push('filepondJs')
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
     </script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 @endpush

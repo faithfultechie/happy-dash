@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="w-1/5">
-                    <x-filepond label="Logo" multipleFiles="false" :acceptedFileTypes="['image/png', 'image/jpeg']"
+                    <x-filepond-upload label="Logo" multipleFiles="false" :acceptedFileTypes="['image/png', 'image/jpeg']"
                         supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="logo" />
                     @error('logo')
                         <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>

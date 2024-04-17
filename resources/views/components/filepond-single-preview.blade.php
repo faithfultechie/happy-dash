@@ -1,8 +1,9 @@
-<div class="mt-5" wire:ignore x-data x-init="
-FilePond.registerPlugin(FilePondPluginFileValidateType);
-FilePond.registerPlugin(FilePondPluginImagePreview);
-FilePond.registerPlugin(FilePondPluginImageValidateSize);
-FilePond.registerPlugin(FilePondPluginFileValidateSize);
+<div class="mt-5" wire:ignore x-data x-init="FilePond.registerPlugin(
+    FilePondPluginFileValidateType,
+    FilePondPluginImagePreview,
+    FilePondPluginImageValidateSize,
+    FilePondPluginFileValidateSize
+);
 FilePond.setOptions({
     server: {
         process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
@@ -13,11 +14,28 @@ FilePond.setOptions({
         }
     },
     acceptedFileTypes: {{ json_encode($acceptedFileTypes) }},
-    labelIdle: `Drag & Drop your picture or <span class='filepond--label-action'>Browse</span>`,
+    labelIdle: `Drag & Drop your file or <span class='filepond--label-action'>Browse</span>`,
     labelFileTypeNotAllowed: 'File unsupported',
     maxFileSize: '2MB',
 });
-FilePond.create($refs.input);">
+
+FilePond.create($refs.input, {
+    @if($attachment)
+    files: [{
+        source: '{{ asset('uploads/' . $attachment) }}',
+        options: {
+            type: 'local'
+        },
+    }],
+    server: {
+        load: (uniqueFileId, load) => {
+            fetch(uniqueFileId)
+                .then(res => res.blob())
+                .then(load);
+        }
+    }
+    @endif
+});">
     <x-input label="{{ $label }}" hidden type="file" x-ref="input" multiple="{{ $multipleFiles }}" />
     <small class="text-xs text-gray-400">{{ $supportedFilesLabel }}</small>
 </div>

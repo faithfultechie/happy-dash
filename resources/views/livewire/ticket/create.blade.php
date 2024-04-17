@@ -68,13 +68,11 @@
                     </div>
                 </div>
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <div class="">
-                        <x-filepond label="Attachments" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
-                            supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="attachments" />
-                        @error('attachments.*')
-                            <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
-                        @enderror
-                    </div>
+                    <x-filepond label="Attachments" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
+                        supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="attachments" />
+                    @error('attachments.*')
+                        <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
+                    @enderror
                 </div>
                 <x-button md wire:click="save" class="mt-6 font-medium leading-6" blue label="Save changes" />
             </form>

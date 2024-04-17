@@ -66,54 +66,18 @@
                         <x-textarea label="Message" wire:model="message" />
                     </div>
                 </div>
+
                 <input type="hidden" id="removed_files" wire:model="removed_files">
 
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <div wire:ignore x-data x-init="FilePond.registerPlugin(FilePondPluginFileValidateType);
-                    FilePond.registerPlugin(FilePondPluginImagePreview);
-                    FilePond.registerPlugin(FilePondPluginImageValidateSize);
-                    FilePond.setOptions({
-                        server: {
-                            process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                                @this.upload('attachments', file, load, error, progress);
-                            },
-                            revert: (filename, load) => {
-
-                                @this.removeUpload('attachments', filename, load);
-                            }
-                        },
-                        acceptedFileTypes: ['image/png', 'image/gif', 'image/jpeg'],
-                        allowMultiple: true
-                    });
-
-                    FilePond.create($refs.input, {
-                        files: [
-                            @foreach($ticket->attachmentList as $attachment) {
-                                source: '{{ asset('uploads/' . $attachment) }}',
-                                options: {
-                                    type: 'local'
-                                }
-                            },
-                            @endforeach
-                        ],
-                        server: {
-                            load: (uniqueFileId, load) => {
-                                fetch(uniqueFileId)
-                                    .then(res => res.blob())
-                                    .then(load);
-                            },
-                            process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
-                                @this.upload('attachments', file, load, error, progress);
-                            },
-                            revert: (filename, load) => {
-
-                                @this.removeUpload('attachments', filename, load);
-                            }
-                        }
-                    });" FilePond.create($refs.input);">
-                        <x-input label="Attachment" type="file" wire:model="attachments" x-ref="input" multiple />
-                        <small class="text-xs text-gray-400">Supported formats: JPG, PNG</small>
-                    </div>
+                    <x-filepond-multiple-preview
+                    label="Attachments"
+                    multipleFiles="true"
+                    :acceptedFileTypes="['image/png', 'image/jpeg']"
+                    supportedFilesLabel="Supported image formats: JPG, PNG"
+                    wire:model="attachments"
+                    :attachments="$ticket->attachmentList"
+                    />
                 </div>
                 @error('attachments.*')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
@@ -137,6 +101,7 @@
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.js">
     </script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 @endpush
