@@ -34,6 +34,7 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('brand/{brand}/edit', App\Livewire\Brand\Edit::class)->name('branding.edit');
     Route::get('admin/backup', App\Livewire\Backup\Index::class)->name('backup.index');
     Route::get('users', App\Livewire\User\Index::class)->name('user.index');
+    Route::get('user/{user}/edit', App\Livewire\User\Edit::class)->name('user.edit');
     Route::get('profile/security', App\Livewire\Profile\Security::class)->name('profile.security');
     Route::get('admin/settings', App\Livewire\Settings::class)->name('settings');
     Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');

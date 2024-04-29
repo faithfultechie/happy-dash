@@ -25,8 +25,8 @@
                             Activity
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Log or history of recent actions, logins, changes, and
+                        notifications related to the account or platform.</p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">
@@ -56,8 +56,8 @@
                             Personalisation
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Customization options such as logo, application and
+                        other preferences tailored to your brand.</p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">
@@ -86,8 +86,8 @@
                             Users
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Configure roles, permissions, security, and management of user
+                        accounts within the system.</p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">
@@ -116,8 +116,9 @@
                             Backup
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Create copies of data to prevent loss and facilitate
+                        restoration in case of accidental deletion.
+                    </p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">
@@ -146,8 +147,8 @@
                             Authentication Log
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Track access activities and login attempts to gain insight
+                        into user authentication procedures.</p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">
@@ -163,7 +164,8 @@
                     <span class="inline-flex rounded-lg p-3 bg-indigo-50 text-indigo-700 ring-4 ring-white">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
                         </svg>
                     </span>
                 </div>
@@ -175,8 +177,9 @@
                             Permission & Roles
                         </a>
                     </h3>
-                    <p class="mt-2 text-sm text-gray-500">Doloribus dolores nostrum quia qui natus officia quod et
-                        dolorem. Sit repellendus qui ut at blanditiis et quo et molestiae.</p>
+                    <p class="mt-2 text-sm text-gray-500">Organize roles and permissions in the system to ensure
+                        users have the right amount of access.
+                    </p>
                 </div>
                 <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400"
                     aria-hidden="true">

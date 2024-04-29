@@ -155,7 +155,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <p> No records </p>
+                                        <p class="text-sm text-gray-500 mt-4"> No records found </p>
                                     @endforelse
                                 </tbody>
                             </table>

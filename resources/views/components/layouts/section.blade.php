@@ -8,7 +8,7 @@
     <x-font></x-font>
     <title>{{ $title ?? 'Page Title' }}</title>
     @livewireStyles
-    <wireui:scripts />
+    @wireUiScripts
 </head>
 
 @php

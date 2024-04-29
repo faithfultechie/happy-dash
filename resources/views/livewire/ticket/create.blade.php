@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <x-filepond label="Attachments" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
+                    <x-filepond-upload label="Attachments" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
                         supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="attachments" />
                     @error('attachments.*')
                         <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>

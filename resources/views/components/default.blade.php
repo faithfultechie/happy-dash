@@ -1,35 +1,24 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <x-font></x-font>
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
-        rel="stylesheet" />
-
+    @stack('filepondCss')
     <title>{{ $title ?? 'Page Title' }}</title>
     @livewireStyles
-    <wireui:scripts />
+    @wireUiScripts
+
 </head>
 
 <body x-data="{ open: false }" x-cloak class="bg-gray-50">
 
     <x-notifications />
 
-    @if (session()->has('success'))
-        <script>
-            Wireui.hook('notifications:load', () => {
-                window.$wireui.notify({
-                    title: 'Success Notification',
-                    description: '{{ session('success') }}',
-                    icon: 'success'
-                })
-            })
-        </script>
-    @endif
+    <x-alerts />
 
     <style>
         [x-cloak] {

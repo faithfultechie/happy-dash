@@ -3,12 +3,9 @@
     </h2>
     <div class="border-t border-gray-300 mt-1"></div>
     <form wire:submit="save" method="POST" class="mx-2 py-4">
-        <div class="grid gap-5 grid-cols-1 md:grid-cols-2 px-2">
-            <div>
+        <div class="grid gap-5 grid-cols-1 md:grid-cols-3 px-2">
+            <div class="col-span-2">
                 <x-input label="Name" wire:model="name" />
-            </div>
-            <div>
-                <x-input label="Description" wire:model="description" />
             </div>
         </div>
     </form>

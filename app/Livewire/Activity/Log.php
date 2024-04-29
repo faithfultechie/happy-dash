@@ -11,11 +11,6 @@ class Log extends Component
 {
     public function render()
     {
-        $agent = new Agent();
-        $audits = DB::table('audits')
-            ->join('users', 'audits.auditable_id', '=', 'users.id')
-            ->select('audits.*', 'users.name', 'users.email')
-            ->paginate(10);
-        return view('livewire.activity.log', compact('audits', 'agent'));
+        return view('livewire.activity.log');
     }
 }

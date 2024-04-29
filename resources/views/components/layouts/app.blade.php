@@ -8,9 +8,9 @@
     <x-font></x-font>
     @stack('filepondCss')
     <title>{{ $title ?? 'Page Title' }}</title>
-
+    @wireUiScripts
     @livewireStyles
-    <wireui:scripts />
+
 </head>
 
 <body x-data="{ open: false }" x-cloak class="bg-gray-50">
