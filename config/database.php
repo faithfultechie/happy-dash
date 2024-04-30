@@ -55,6 +55,11 @@ return [
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
+            'dump' => [
+                'dump_binary_path' => 'C:\Program Files\MariaDB 11.3\bin',
+                'use_single_transaction',
+                'timeout' => 60 * 5, // 5 minute timeout
+            ],
             'prefix_indexes' => true,
             'strict' => false,
             'engine' => null,
@@ -125,7 +130,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_database_'),
         ],
 
         'default' => [
