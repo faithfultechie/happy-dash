@@ -12,20 +12,7 @@ use Spatie\Backup\Tasks\Monitor\BackupDestinationStatusFactory;
 
 class Index extends Component
 {
-    public function deleteBackup()
-    {
-        $appName = config('app.name');
-        if (Storage::disk('local')->exists($appName)) {
-            Storage::disk('local')->delete($appName);
-            return "Backup file  has been deleted successfully.";
-        } else {
-            return "Backup file  does not exist.";
-        }
-    }
-
-    public $message = '';
     public $isBackupRunning = false;
-
     public function runBackup()
     {
         // Set the flag to indicate backup is running
@@ -34,12 +21,27 @@ class Index extends Component
         Artisan::call('backup:run');
     }
 
-    public function runBackup2()
+    public function closeAlert()
     {
         // Set the flag to indicate backup is running
         $this->isBackupRunning = false;
     }
-
+    private function formatBytes($bytes)
+    {
+        if ($bytes >= 1073741824) {
+            return number_format($bytes / 1073741824, 2) . ' GB';
+        } elseif ($bytes >= 1048576) {
+            return number_format($bytes / 1048576, 2) . ' MB';
+        } elseif ($bytes >= 1024) {
+            return number_format($bytes / 1024, 2) . ' KB';
+        } elseif ($bytes > 1) {
+            return $bytes . ' bytes';
+        } elseif ($bytes == 1) {
+            return $bytes . ' byte';
+        } else {
+            return '0 bytes';
+        }
+    }
     public function getBackupInfo()
     {
         $statuses = BackupDestinationStatusFactory::createForMonitorConfig(config('backup.monitor_backups'));
@@ -54,19 +56,37 @@ class Index extends Component
                 'reachable' => $destination->isReachable(),
                 'healthy' => $status->isHealthy(),
                 'count' => $backups->count(),
-                'storageSpace' => $destination->usedStorage(),
+                'storageSpace' => $this->formatBytes($destination->usedStorage()),
                 'backups' => [],
             ];
             foreach ($backups as $backup) {
                 $destInfo['backups'][] = [
                     'path' => $backup->path(),
                     'date' => $backup->date(),
-                    'size' => $backup->sizeInBytes(),
+                    'size' => $this->formatBytes($backup->sizeInBytes()),
                 ];
             }
+
             $info[] = $destInfo;
         }
         return $info;
+    }
+
+    public function downloadBackup($path)
+    {
+        $backupFilePath = storage_path('app/' . $path);
+        if (file_exists($backupFilePath)) {
+            return response()->download($backupFilePath);
+        }
+    }
+    public function deleteBackup($path)
+    {
+        $backupFilePath = storage_path('app/' . $path);
+        if (file_exists($backupFilePath)) {
+            unlink($backupFilePath);
+            return true;
+        }
+        return false;
     }
     public function render()
     {

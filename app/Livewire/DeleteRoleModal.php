@@ -13,7 +13,7 @@ class DeleteRoleModal extends ModalComponent
 
     public static function modalMaxWidth(): string
     {
-        return 'lg';
+        return '2xl';
     }
 
     public function mount(Role $role)
@@ -23,16 +23,9 @@ class DeleteRoleModal extends ModalComponent
 
     public function delete()
     {
-        try {
-            $this->role->delete();
-            $this->dispatch('refresh');
-            $this->closeModal();
-
-            Log::info('Role deleted successfully.');
-        } catch (\Exception $e) {
-            Log::error('Error deleting role: ' . $e->getMessage());
-            throw $e;
-        }
+        $this->role->delete();
+        $this->dispatch('refresh');
+        $this->closeModal();
     }
 
     public function render()

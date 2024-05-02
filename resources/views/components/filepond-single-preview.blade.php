@@ -36,6 +36,6 @@ FilePond.create($refs.input, {
     }
     @endif
 });">
-    <x-input label="{{ $label }}" hidden type="file" x-ref="input" multiple="{{ $multipleFiles }}" />
+    <x-input label="{{ $label }}" hidden type="file" x-ref="input"/>
     <small class="text-xs text-gray-400">{{ $supportedFilesLabel }}</small>
 </div>

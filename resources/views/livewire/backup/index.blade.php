@@ -34,7 +34,7 @@
                         </div>
                         <div class="ml-auto pl-3">
                             <div class="-mx-1.5 -my-1.5">
-                                <button type="button" wire:click="runBackup2"
+                                <button type="button" wire:click="closeAlert"
                                     class="inline-flex rounded-md bg-green-50 p-1.5 text-green-600 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-600 focus:ring-offset-2 focus:ring-offset-green-50">
                                     <span class="sr-only">Dismiss</span>
                                     <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -46,9 +46,6 @@
                         </div>
                     </div>
                 </div>
-            @endif
-            @if ($message)
-                <p>{{ $message }}</p>
             @endif
         </div>
 
@@ -108,7 +105,8 @@
                                         <th scope="col"
                                             class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Size</th>
                                         <th scope="col"
-                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Role</th>
+                                            class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Action
+                                        </th>
                                         <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                                             <span class="sr-only">Edit</span>
                                         </th>
@@ -125,14 +123,25 @@
                                                     {{ $backup['date'] }}
                                                 </td>
                                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                    {{ $backup['size'] }} bytes</td>
-                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">Member
-                                                </td>
-                                                <td
-                                                    class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                    <a href="#"
-                                                        class="text-indigo-600 hover:text-indigo-900">Edit<span
-                                                            class="sr-only">, Lindsay Walton</span></a>
+                                                    {{ $backup['size'] }}</td>
+                                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <x-button.circle xs light title="Delete" negative rounded
+                                                        icon="trash" x-on:click="$openModal('simpleModal')" />
+                                                    <x-modal name="simpleModal">
+                                                        <x-card title="Delete backup">
+                                                            <p class="text-gray-600 text-wrap">This will permanently delete the
+                                                                backup file <span class="font-medium">{{ $backup['path'] }}.</span> This action cannot be undone.</p>
+                                                            <x-slot name="footer" class="flex justify-end gap-x-4">
+                                                                <x-button flat label="Cancel" x-on:click="close" />
+                                                                <x-button
+                                                                    wire:click="deleteBackup('{{ $backup['path'] }}')"
+                                                                    red label="Delete" />
+                                                            </x-slot>
+                                                        </x-card>
+                                                    </x-modal>
+                                                    <x-button.circle xs light title="Download" secondary rounded
+                                                        icon="arrow-down"
+                                                        wire:click="downloadBackup('{{ $backup['path'] }}')" />
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -38,6 +38,7 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('profile/security', App\Livewire\Profile\Security::class)->name('profile.security');
     Route::get('admin/settings', App\Livewire\Settings::class)->name('settings');
     Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');
+    Route::get('profile/account', App\Livewire\Profile\Account::class)->name('user.account');
     Route::get('company/{company}/show', App\Livewire\Company\Show::class)->name('company.show');
 
     Route::get('ticket/create', App\Livewire\Ticket\Create::class)->name('ticket.create');
@@ -45,10 +46,6 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('tickets', App\Livewire\Ticket\Index::class)->name('ticket.index');
     Route::get('admin/tickets', App\Livewire\Ticket\AdminTickets::class)->name('admin.tickets');
 
-    Route::controller(UserProfileController::class)->group(function () {
-        Route::get('profile/account', 'account')
-            ->name('user.account');
-    });
 
     Route::resource('password-change', ForcePasswordChangeController::class)
     ->only(['edit', 'update'])

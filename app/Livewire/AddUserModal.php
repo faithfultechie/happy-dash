@@ -23,9 +23,6 @@ class AddUserModal extends ModalComponent
     }
 
     public $name, $email, $password, $password_confirmation;
-    public $role = "";
-    public $selectedPermissions = [];
-
     protected $listeners = ['refresh' => '$refresh'];
 
     public function save()
@@ -41,12 +38,7 @@ class AddUserModal extends ModalComponent
             ],
         );
         $user = User::create($validatedData);
-        $user->force_password_change = 1;
         $user->save();
-
-        $user->assignRole($this->role);
-        $user->syncPermissions($this->selectedPermissions);
-
         $this->dispatch('pg:eventRefresh-default');
         $this->closeModal();
     }

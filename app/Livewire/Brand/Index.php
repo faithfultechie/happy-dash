@@ -12,7 +12,6 @@ class Index extends Component
     use WithFileUploads;
 
     public $app_name, $logo, $footer_links;
-
     protected $listeners = ['refresh' => '$refresh'];
 
     public function save()
@@ -31,7 +30,6 @@ class Index extends Component
         session()->flash('success', 'Settings updated successfully.');
         return redirect()->route('settings');
     }
-
     public function render()
     {
         return view('livewire.brand.index');

@@ -15,12 +15,8 @@ class Edit extends Component
     public $user, $name, $email, $password, $password_confirmation;
     public $role = "";
     public $selectedPermissions = [];
-    public $disable_login = 0;
-    public $force_password_change = 0;
-
-
-    protected $listeners = ['refresh' => '$refresh'];
-
+    public $disable_login = false;
+    public $force_password_change;
     public function mount(User $user)
     {
         $this->role =  $user->roles->pluck('name')->first();
@@ -28,20 +24,16 @@ class Edit extends Component
         $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->force_password_change = $user->force_password_change;
     }
 
     public function save()
     {
-        if (!empty($this->password)) {
-            $this->user->force_password_change = 1;
-        }
-
         $rules = [
             'name' => ['required', 'string'],
             'email' => ['required', 'email', 'string', Rule::unique(User::class)->ignore($this->user)],
             'disable_login' => ['boolean', 'nullable'],
             'force_password_change' => ['boolean', 'nullable'],
-
         ];
 
         if ($this->password) {
@@ -55,7 +47,7 @@ class Edit extends Component
         $this->user->syncRoles($this->role);
         $this->user->syncPermissions($this->selectedPermissions);
         session()->flash('success', 'Profile updated successfully.');
-        return redirect()->route('user.edit', auth::user()->id);
+        return redirect()->route('user.edit', $this->user->id);
     }
 
 
