@@ -23,16 +23,9 @@ class DeletePermissionModal extends ModalComponent
 
     public function delete()
     {
-        try {
-            $this->permission->delete();
-            $this->dispatch('refresh');
-            $this->closeModal();
-
-            Log::info('Permission deleted successfully.');
-        } catch (\Exception $e) {
-            \Log::error('Error deleting permission: ' . $e->getMessage());
-            throw $e;
-        }
+        $this->permission->delete();
+        $this->dispatch('refresh');
+        $this->closeModal();
     }
 
     public function render()

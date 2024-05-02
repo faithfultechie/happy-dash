@@ -11,6 +11,6 @@
     <div
         class="px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600 rounded-lg ">
         <x-button wire:click="$dispatch('closeModal')" flat label="Cancel" />
-        <x-button wire:click="{{ $modalDeleteAction }}" red label="Delete" />
+        <x-button wire:click="{{ $modalBtnAction }}" :color="$modalBtnColor" label="{{ $modalBtnLabel }}" />
     </div>
 </div>

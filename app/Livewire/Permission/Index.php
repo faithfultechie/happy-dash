@@ -9,7 +9,6 @@ use Spatie\Permission\Models\Role;
 class Index extends Component
 {
     protected $listeners = ['refresh' => '$refresh'];
-
     public function render()
     {
         $permissions = Permission::get();
