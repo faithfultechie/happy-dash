@@ -10,7 +10,7 @@
                 <form class="space-y-6" action="{{ route('login') }}" method="POST">
                     @csrf
                     <div>
-                        <x-input type="email" name="email" label="Email" required />
+                        <x-input type="email" name="email" label="Email" value="{{ old('email') }}" required />
                     </div>
                     <div>
                         <x-inputs.password type="password" name="password" label="Password" required />

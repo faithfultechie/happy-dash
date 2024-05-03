@@ -4,10 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     <x-font></x-font>
-    @stack('filepondCss')
+
     <title>{{ $title ?? 'Page Title' }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('filepondCss')
     @wireUiScripts
     @livewireStyles
 

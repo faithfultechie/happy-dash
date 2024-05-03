@@ -38,7 +38,9 @@ Route::middleware(['auth', 'web', 'verified', 'disable.login', 'force.password.c
     Route::get('profile/security', App\Livewire\Profile\Security::class)->name('profile.security');
     Route::get('admin/settings', App\Livewire\Settings::class)->name('settings');
     Route::get('companies', App\Livewire\Company\Index::class)->name('company.index');
+
     Route::get('profile/account', App\Livewire\Profile\Account::class)->name('user.account');
+    Route::get('profile/change-password', App\Livewire\Profile\ChangePassword::class)->name('user.change.password');
     Route::get('company/{company}/show', App\Livewire\Company\Show::class)->name('company.show');
 
     Route::get('ticket/create', App\Livewire\Ticket\Create::class)->name('ticket.create');

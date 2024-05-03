@@ -12,11 +12,11 @@
     </button>
     <div x-show="open" @click.outside="open = false"
         class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-md ring-1 ring-gray-800/5 focus:outline-none">
-        <a wire:navigate href="{{ route('user.account') }}#personal-information"
+        <a href="{{ route('user.account') }}#personal-information"
             class="divide-y divide-gray-200 block px-3 py-1 text-sm leading-6 text-gray-800" role="menuitem"
             tabindex="-1" id="user-menu-item-0">Your profile</a>
         <div class="w-11/12 m-auto border-t border-gray-100"></div>
-        <a wire:navigate href="{{ route('user.account') }}#change-password"
+        <a wire:navigate href="{{ route('user.change.password') }}"
             class="divide-y divide-gray-100 block px-3 py-1 text-sm leading-6 text-gray-800" role="menuitem"
             tabindex="-1" id="user-menu-item-0">Your password</a>
         <div class="w-11/12 m-auto border-t border-gray-100"></div>

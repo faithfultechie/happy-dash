@@ -10,7 +10,7 @@
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow mt-5">
         <h2 class="text-xl font-semibold text-slate-700">Personal Information</h2>
         <p class="text-slate-500 text-sm mt-2">This information will be displayed publicly</p>
-        <div class="w-full md:w-7/12" id="#personal-information">
+        <div class="w-full md:w-5/12" id="#personal-information">
             <form>
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-1 mt-10 mb-2">
                     <div>
@@ -28,32 +28,47 @@
                             :attachment="$user->profile_photo" />
                     </div>
                 </div>
-                <x-button md wire:click="updateProfile" class="mt-6 font-medium" blue
-                    label="Update profile" />
+                <x-button md wire:click="updateProfile" class="mt-6 font-medium" blue label="Update profile" />
             </form>
             <div class="border-t border-secondary-200 mt-10"></div>
         </div>
 
-        <div class="w-full md:w-7/12" id="change-password">
-            <h2 class="text-xl font-semibold text-slate-700 mt-10">Change Password</h2>
-            <p class="text-slate-500 text-sm mt-2">Please ensure your password is 8 characters with a mix of letters,
-                numbers
-                and symbols</p>
-            <form>
-                <div class="grid gap-5 grid-cols-1 md:grid-cols-1 mt-8 mb-2">
-                    <div>
-                        <x-inputs.password type="password" wire:model="current_password" label="Current password" required />
+        <div class="w-full md:w-8/12" id="change-password">
+            <h2 class="text-xl font-semibold text-red-700 mt-10">Delete Account</h2>
+            <p class="text-slate-600 text-sm mt-2"> Are you sure you want to delete your account? This action is
+                irreversible and will remove all your data associated with this account. If you proceed, you will lose
+                access to your account and all related information.</p>
+            <p class="text-slate-600 text-sm mt-2"> Please consider the following before proceeding: </p>
+            <ul class="list-disc text-slate-600 text-sm mt-2 ml-5">
+                <li> Once deleted, your account cannot be recovered.</li>
+                <li>You will lose access to any saved preferences, settings, and content.</li>
+                <li>
+                    Any associated subscriptions, purchases, or memberships may also be affected.</li>
+            </ul>
+            <x-button outline negative class="mt-6 font-medium" label="Proceed to delete account"
+                x-on:click="$openModal('simpleModal')" />
+            <x-modal name="simpleModal">
+                <x-card title="Delete account">
+                    <p class="text-gray-600 text-wrap text-sm">To confirm account deletion, please enter your password</p>
+                    <div class="w-full md:w-5/12 mt-2">
+                        <x-inputs.password type="password" wire:model.defer="password" />
                     </div>
-                    <div>
-                        <x-inputs.password type="password" wire:model="password" label="New password" required />
-                    </div>
-                    <div>
-                        <x-inputs.password type="password" wire:model="password_confirmation" label="Confirm password"
-                            required />
-                    </div>
-                </div>
-                <x-button md wire:click="updatePassword" class="mt-6 font-medium" blue label="Save change" />
-            </form>
+                    <p class="text-gray-600 text-wrap text-sm mt-5">Alternatively, you can deactivate your account.
+                    <ul class="list-disc text-slate-600 text-sm mt-2 ml-5">
+                        <li>This will temporarily suspend your access to the platform. </li>
+                        <li>Your profile and data will remain saved </li>
+                        <li> You can reactivate your account later by sending an email to <a
+                                href="mailto:hello@cooldash.com"><span class="text-underline font-medium">
+                                    hello@cooldash.com</span></a></li>
+                    </ul>
+                    </p>
+                    <x-slot name="footer" class="flex justify-end gap-x-4">
+                        <x-button flat label="Cancel" x-on:click="close" />
+                        <x-button outline blue label="Deactivate" wire:click="deactivateAccount" />
+                        <x-button red label="Delete forever" wire:click="deleteAccount" />
+                    </x-slot>
+                </x-card>
+            </x-modal>
         </div>
     </div>
 </div>

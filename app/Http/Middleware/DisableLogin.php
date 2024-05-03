@@ -17,7 +17,7 @@ class DisableLogin
     {
         if (auth()->check() && auth()->user()->disable_login == 1) {
             auth()->logout();
-            return redirect()->route('login')->with('error', 'You are not authorized to login. Contact support.');
+            return redirect()->route('login')->with('error', 'Your account is deactivated. Contact support.');
         }
         return $next($request);
     }
