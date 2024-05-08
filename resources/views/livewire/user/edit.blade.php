@@ -36,12 +36,12 @@
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
                     <div class="flex flex-wrap mt-4">
                         <div class="">
-                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login" @if($disable_login == 1) checked @endif
-                                 />
+                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login"
+                                @if ($disable_login == 1) checked @endif />
                         </div>
                         <div class="ml-6">
-                            <x-checkbox id="force_password_change" wire:model="force_password_change" label="Force password change"
-                                 />
+                            <x-checkbox id="force_password_change" wire:model="force_password_change"
+                                label="Force password change" />
                         </div>
                     </div>
                 </div>
@@ -68,14 +68,34 @@
                     @forelse ($permissions as $permission)
                         <div class="m-1.5">
                             <x-checkbox id="{{ $permission->id }}" wire:model="selectedPermissions" :checked="in_array($permission->id, $selectedPermissions)"
-                                label="{{ $permission->name }}" value="{{ $permission->name }}" primary
-                                sm />
+                                label="{{ $permission->name }}" value="{{ $permission->name }}" primary sm />
                         </div>
                     @empty
                         <p class="text-sm text-gray-500">No records found</p>
                     @endforelse
                 </div>
-                <x-button md wire:click="save" class="mt-12 font-medium leading-6" blue label="Save change" />
+                <div class="flex justify-between">
+                    <div>
+                        <x-button md wire:click="save" class="mt-12 font-medium leading-6" blue label="Save change" />
+                    </div>
+                    <div>
+                        <x-button md x-on:click="$openModal('simpleModal')"
+                            class="mt-12 text-right font-medium leading-6" icon="trash" outline red label="Delete user" />
+                        <x-modal name="simpleModal">
+                            <x-card title="Delete account">
+                                <p class="text-gray-600 text-wrap text-sm">Do you really want to delete <span
+                                        class="font-medium">{{ $user->name }}</span>?
+                                    This action will permanently erase the user, including any
+                                    associated data. Remember, this action cannot be undone.
+                                </p>
+                                <x-slot name="footer" class="flex justify-end gap-x-4">
+                                    <x-button flat label="Cancel" x-on:click="close" />
+                                    <x-button red label="Delete" wire:click="deleteAccount" />
+                                </x-slot>
+                            </x-card>
+                        </x-modal>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

@@ -44,7 +44,7 @@
                 <li>
                     Any associated subscriptions, purchases, or memberships may also be affected.</li>
             </ul>
-            <x-button outline negative class="mt-6 font-medium" label="Proceed to delete account"
+            <x-button outline negative class="mt-6 font-medium" icon="trash" label="Proceed to delete account"
                 x-on:click="$openModal('simpleModal')" />
             <x-modal name="simpleModal">
                 <x-card title="Delete account">

@@ -3,12 +3,13 @@
 namespace App\Livewire\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
-use Illuminate\Validation\Rules\Password;
 use Livewire\Component;
-use Spatie\Permission\Models\Permission;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Validation\Rules\Password;
 
 class Edit extends Component
 {
@@ -59,6 +60,17 @@ class Edit extends Component
 
     //     $this->password = $this->password_confirmation = $randomString;
     // }
+
+    public function deleteAccount()
+    {
+        $user = $this->user;
+        if ($user->profile_photo) {
+            Storage::disk('public')->delete($user->profile_photo);
+        }
+        $user->delete();
+        session()->flash('success', 'User account permanently deleted successfully.');
+        return redirect()->route('user.index');
+    }
 
     public function render()
     {
