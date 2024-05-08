@@ -15,7 +15,7 @@ class DisableLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->disable_login == 1) {
+        if (auth()->check() && auth()->user()->disable_login) {
             auth()->logout();
             return redirect()->route('login')->with('error', 'Your account is deactivated. Contact support.');
         }

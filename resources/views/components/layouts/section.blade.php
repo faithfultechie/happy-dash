@@ -33,10 +33,9 @@
     <div class="mx-auto max-w-7xl relative flex h-16 justify-center items-center">
         <div class="flex items-center">
             <a href="{{ route('login') }}">
-                <img class="h-16 w-auto mt-5"
-                    src="{{ isset($brand->logo) ? asset('uploads/' . $brand->logo) : 'https://api.dicebear.com/7.x/big-smile/svg' }}
-                "
-                    alt="Logo">
+                <img class="h-40 w-auto mt-5"
+                src="{{ isset($brand->logo) ? asset('uploads/' . $brand->logo) : asset('img/logo.png') }}"
+                alt="Cooldash logo">
             </a>
         </div>
     </div>

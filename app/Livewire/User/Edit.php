@@ -19,11 +19,12 @@ class Edit extends Component
     public $force_password_change;
     public function mount(User $user)
     {
+        $this->user = $user;
         $this->role =  $user->roles->pluck('name')->first();
         $this->selectedPermissions = $user->permissions->pluck('name')->toArray();
-        $this->user = $user;
         $this->name = $user->name;
         $this->email = $user->email;
+        $this->disable_login = $user->disable_login;
         $this->force_password_change = $user->force_password_change;
     }
 
@@ -43,9 +44,9 @@ class Edit extends Component
         $validatedData = $this->validate($rules);
 
         $this->user->update($validatedData);
-
         $this->user->syncRoles($this->role);
         $this->user->syncPermissions($this->selectedPermissions);
+
         session()->flash('success', 'Profile updated successfully.');
         return redirect()->route('user.edit', $this->user->id);
     }

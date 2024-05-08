@@ -30,9 +30,8 @@
                 </div>
                 <x-button md wire:click="updateProfile" class="mt-6 font-medium" blue label="Update profile" />
             </form>
-            <div class="border-t border-secondary-200 mt-10"></div>
         </div>
-
+        <div class="border-t border-secondary-200 mt-10"></div>
         <div class="w-full md:w-8/12" id="change-password">
             <h2 class="text-xl font-semibold text-red-700 mt-10">Delete Account</h2>
             <p class="text-slate-600 text-sm mt-2"> Are you sure you want to delete your account? This action is
@@ -49,7 +48,8 @@
                 x-on:click="$openModal('simpleModal')" />
             <x-modal name="simpleModal">
                 <x-card title="Delete account">
-                    <p class="text-gray-600 text-wrap text-sm">To confirm account deletion, please enter your password</p>
+                    <p class="text-gray-600 text-wrap text-sm">To confirm account deletion, please enter your password
+                    </p>
                     <div class="w-full md:w-5/12 mt-2">
                         <x-inputs.password type="password" wire:model.defer="password" />
                     </div>

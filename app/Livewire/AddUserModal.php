@@ -12,11 +12,6 @@ use Illuminate\Validation\Rules\Password;
 
 class AddUserModal extends ModalComponent
 {
-    public static function closeModalOnClickAway(): bool
-    {
-        return false;
-    }
-
     public static function modalMaxWidth(): string
     {
         return '3xl';

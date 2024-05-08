@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('force_password_change')->default(0);
-            $table->boolean('disable_login')->default(0);
+            $table->boolean('force_password_change')->default(false);
+            $table->boolean('disable_login')->default(false);
             $table->string('profile_photo')->nullable();
             $table->rememberToken();
             $table->softDeletes();

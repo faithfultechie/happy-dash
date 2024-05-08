@@ -2,7 +2,7 @@
     <div>
         <x-page-heading pageHeading="Edit User" />
     </div>
-    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-md mt-5">
+    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <div class="text-right">
             <button type="button"
                 class="ml-5 inline-flex items-center text-xs font-medium text-gray-500 hover:text-gray-700">
@@ -36,11 +36,11 @@
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
                     <div class="flex flex-wrap mt-4">
                         <div class="">
-                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login"
+                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login" @if($disable_login == 1) checked @endif
                                  />
                         </div>
                         <div class="ml-6">
-                            <x-checkbox  type="checkbox" wire:model="force_password_change"  value="force_password_change" label="Force password change"
+                            <x-checkbox id="force_password_change" wire:model="force_password_change" label="Force password change"
                                  />
                         </div>
                     </div>
@@ -48,8 +48,7 @@
             </div>
         </form>
     </div>
-
-    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-md mt-5">
+    <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <form>
             <div class="w-full md:w-9/12">
                 <h2 class="text-xl font-semibold text-slate-700">Roles</h2>
@@ -69,7 +68,7 @@
                     @forelse ($permissions as $permission)
                         <div class="m-1.5">
                             <x-checkbox id="{{ $permission->id }}" wire:model="selectedPermissions" :checked="in_array($permission->id, $selectedPermissions)"
-                                label="{{ $permission->description }}" primary value="{{ $permission->name }}" primary
+                                label="{{ $permission->name }}" value="{{ $permission->name }}" primary
                                 sm />
                         </div>
                     @empty

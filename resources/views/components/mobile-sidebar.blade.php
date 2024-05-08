@@ -4,9 +4,11 @@
 
 <div class="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6 pb-4">
     <div class="flex h-16 shrink-0 items-center">
-        <img class="h-14 w-auto"
-            src="{{ isset($brand->logo) ? asset('uploads/' . $brand->logo) : 'https://api.dicebear.com/7.x/big-smile/svg' }}"
-            alt="Logo">
+        <a href="{{ route('login') }}">
+            <img class="h-40 w-auto relative right-11"
+                src="{{ isset($brand->logo) ? asset('uploads/' . $brand->logo) : asset('img/logo.png') }}"
+                alt="Cooldash logo">
+        </a>
     </div>
     <nav class="flex flex-1 flex-col">
         <ul role="list" class="space-y-1">

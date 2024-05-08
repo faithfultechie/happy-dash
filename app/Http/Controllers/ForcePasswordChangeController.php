@@ -4,18 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class ForcePasswordChangeController extends Controller
 {
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-
-        return view('profile.password-change', compact('user'));
+        $user = Auth::user();
+        if ($user && $user->force_password_change == 1) {
+            return view('profile.password-change', compact('user'));
+        } else {
+            return redirect()->route('dashboard');
+        }
     }
-
 
     public function update(Request $request, $id)
     {
@@ -30,7 +33,7 @@ class ForcePasswordChangeController extends Controller
 
         if (isset($validatedData['password'])) {
             $user->password = Hash::make($validatedData['password']);
-            $user->force_password_change = 0;
+            $user->force_password_change = false;
         }
 
         $user->save();

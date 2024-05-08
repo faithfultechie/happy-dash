@@ -34,7 +34,7 @@ export default {
             "pg-primary": colors.gray,
         },
         fontFamily: {
-            sans: ["Inter", "sans-serif"],
+            sans: ["Hind", "sans-serif"],
         },
     },
     plugins: [],

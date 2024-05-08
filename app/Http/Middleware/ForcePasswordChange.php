@@ -16,8 +16,8 @@ class ForcePasswordChange
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->force_password_change == 1) {
-            return redirect()->route('password-change.edit', Auth::user()->id);
+        if (auth()->check() && auth()->user()->force_password_change === 1) {
+            return redirect()->route('password-change.edit', auth()->user()->id);
         }
         return $next($request);
     }
