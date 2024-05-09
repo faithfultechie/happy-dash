@@ -14,7 +14,7 @@
             <div
                 class="px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600 rounded-lg">
                 <x-button sm wire:click="$dispatch('closeModal')" flat label="Cancel" />
-                <x-button sm wire:click="closeTicket" class="ml-2 font-medium leading-6" red label="Close" />
+                <x-button sm wire:click="closeTicket" class="font-medium leading-6" red label="Close" />
             </div>
         </div>
     @else
@@ -24,15 +24,17 @@
                 Open ticket
             </h2>
             <div class="mx-auto px-5 py-5">
-                <p class="text-sm text-secondary-600 rounded-b-xl grow dark:text-secondary-400">This will action will
-                    reopen <span class="font-medium">{{ $ticket->title }}
-                    </span>
-                    by <span class="font-medium"> {{ $ticket->user->name }}</span>.</p>
+                <ul class="text-secondary-600 list-disc text-sm ml-2">
+                    <li>{{ $ticket->user->name }}</li>
+                    <li>{{ $ticket->title }}</li>
+                    <li>{{ $ticket->dateForHumans() }}</li>
+                </ul>
+                </p>
             </div>
             <div
                 class="px-4 py-4 sm:px-6 bg-secondary-50 rounded-t-none border-t dark:bg-secondary-800 dark:border-secondary-600 rounded-lg">
                 <x-button sm wire:click="$dispatch('closeModal')" flat label="Cancel" />
-                <x-button sm wire:click="openTicket" class="ml-2 font-medium leading-6" green label="Open" />
+                <x-button sm wire:click="openTicket" class="font-medium leading-6" green label="Open" />
             </div>
         </div>
     @endif

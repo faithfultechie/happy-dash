@@ -12,7 +12,7 @@ class Create extends Component
 {
     use WithFileUploads;
     public $attachments = [];
-    public $title, $category, $priority, $status, $message;
+    public $title, $category, $priority, $message;
 
     public function save()
     {
@@ -20,9 +20,6 @@ class Create extends Component
             'title' => ['required', 'string', Rule::unique(Ticket::class)],
             'priority' => ['required', 'string', Rule::in([
                 'low', 'medium', 'high',
-            ])],
-            'status' => ['required', 'string', Rule::in([
-                'open', 'closed',
             ])],
             'attachments.*' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
             'message' => ['required', 'string'],

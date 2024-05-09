@@ -15,7 +15,7 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->string('title');
             $table->string('category')->nullable();
-            $table->string('status')->nullable();
+            $table->string('status')->default('open');
             $table->string('priority')->nullable();
             $table->string('attachments')->nullable();
             $table->foreignUlid('user_id')->constrained('users')->onDelete('cascade');

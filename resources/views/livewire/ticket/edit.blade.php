@@ -43,20 +43,6 @@
                             </div>
                         </fieldset>
                     </div>
-                    <div class="mt-2">
-                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-400">Status</label>
-                        <fieldset class="mt-2">
-                            <legend class="sr-only">Status</legend>
-                            <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                                <div class="flex items-center">
-                                    <x-radio id="open" label="Open" wire:model="status" value="open" />
-                                </div>
-                                <div class="flex items-center">
-                                    <x-radio id="closed" label="Closed" wire:model="status" value="closed" />
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
                 </div>
 
                 <div class="border-t border-gray-200 my-6"></div>

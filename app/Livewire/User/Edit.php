@@ -52,14 +52,13 @@ class Edit extends Component
         return redirect()->route('user.edit', $this->user->id);
     }
 
+    public function generatePassword($length = 8)
+    {
+        $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*";
+        $randomString = substr(str_shuffle(str_repeat($characters, $length)), 0, $length);
 
-    // public function generatePassword($length = 8)
-    // {
-    //     $characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%&*";
-    //     $randomString = substr(str_shuffle(str_repeat($characters, $length)), 0, $length);
-
-    //     $this->password = $this->password_confirmation = $randomString;
-    // }
+        $this->password = $this->password_confirmation = $randomString;
+    }
 
     public function deleteAccount()
     {

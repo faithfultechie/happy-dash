@@ -1,6 +1,6 @@
 <div>
     <div>
-        <x-page-heading pageHeading="Edit User" />
+        <x-page-heading pageHeading="Edit User - {{ $user->name }}" />
     </div>
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <div class="text-right">
@@ -27,6 +27,10 @@
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
                     <div>
                         <x-inputs.password label="Password" wire:model="password" />
+                        <div class="text-right mt-1">
+                            <x-button.circle 2xs rounded secondary label="↻" title="Generate password"
+                                wire:click="generatePassword" />
+                        </div>
                     </div>
                     <div>
                         <x-inputs.password label="Confirm password" wire:model="password_confirmation" />
@@ -35,9 +39,8 @@
 
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
                     <div class="flex flex-wrap mt-4">
-                        <div class="">
-                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login"
-                                @if ($disable_login == 1) checked @endif />
+                        <div>
+                            <x-checkbox id="disable_login" label="Disable login" wire:model="disable_login" />
                         </div>
                         <div class="ml-6">
                             <x-checkbox id="force_password_change" wire:model="force_password_change"
@@ -48,6 +51,7 @@
             </div>
         </form>
     </div>
+
     <div class="bg-white mx-auto p-6 rounded-xl border border-gray-100 shadow-sm mt-5">
         <form>
             <div class="w-full md:w-9/12">
@@ -80,7 +84,8 @@
                     </div>
                     <div>
                         <x-button md x-on:click="$openModal('simpleModal')"
-                            class="mt-12 text-right font-medium leading-6" icon="trash" outline red label="Delete user" />
+                            class="mt-12 text-right font-medium leading-6" icon="trash" outline red
+                            label="Delete user" />
                         <x-modal name="simpleModal">
                             <x-card title="Delete account">
                                 <p class="text-gray-600 text-wrap text-sm">Do you really want to delete <span
