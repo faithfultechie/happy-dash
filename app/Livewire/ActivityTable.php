@@ -49,9 +49,7 @@ final class ActivityTable extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('authenticatable_id')
-            ->add('user_name', function ($model) {
-                return $model->name;
-            })
+            ->add('user_name', fn ($model) => $model->name)
             ->add('ip_address')
             ->add('user_agent')
             ->add('user_agent_name', function ($model) {
@@ -61,7 +59,6 @@ final class ActivityTable extends PowerGridComponent
             ->add('login_at')
             ->add('login_at_format', function ($model) {
                 $loginAt = Carbon::parse($model->login_at);
-
                 return $loginAt->format(
                     $loginAt->year === Carbon::now()->year
                         ? 'M d, g:i A' : 'M d, Y, g:i A'

@@ -48,10 +48,8 @@ final class AuditTable extends PowerGridComponent
     {
         return PowerGrid::fields()
             ->add('id')
-            ->add('user_name', function ($model) {
-                return $model->name;
-            })
-            ->add('event')
+            ->add('user_name', fn ($model) => $model->name)
+            ->add('event', fn ($model) => ucfirst($model->event))
             ->add('auditable_id')
             ->add('ip_address')
             ->add('user_agent_name', function ($model) {
@@ -59,7 +57,13 @@ final class AuditTable extends PowerGridComponent
                 return $agent->browser();
             })
             ->add('created_at')
-            ->add('created_at_formatted', fn ($model) => Carbon::parse($model->created_at)->diffForHumans());
+            ->add('created_at_formatted', function ($model) {
+                $createdAt = Carbon::parse($model->created_at);
+                return $createdAt->format(
+                    $createdAt->year === Carbon::now()->year
+                        ? 'M d, g:i A' : 'M d, Y, g:i A'
+                );
+            });
     }
 
     public function columns(): array
