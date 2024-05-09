@@ -56,19 +56,27 @@
                 <input type="hidden" id="removed_files" wire:model="removed_files">
 
                 <div class="grid gap-5 grid-cols-1 md:grid-cols-2 mt-5">
-                    <x-filepond-multiple-preview
-                    label="Attachments"
-                    multipleFiles="true"
-                    :acceptedFileTypes="['image/png', 'image/jpeg']"
-                    supportedFilesLabel="Supported image formats: JPG, PNG"
-                    wire:model="attachments"
-                    :attachments="$ticket->attachmentList"
-                    />
+                    <x-filepond-multiple-preview label="Attachments" multipleFiles="true" :acceptedFileTypes="['image/png', 'image/jpeg']"
+                        supportedFilesLabel="Supported image formats: JPG, PNG" wire:model="attachments"
+                        :attachments="$ticket->attachmentList" />
                 </div>
                 @error('attachments.*')
                     <p class="mt-2 text-sm text-negative-600">{{ $message }}</p>
                 @enderror
-                <x-button md wire:click="save" class="mt-6 font-medium leading-6" blue label="Save changes" />
+                <div class="flex justify-between mt-12">
+                    <div>
+                        <x-button md wire:click="save" class="font-medium leading-6" blue label="Save change" />
+                    </div>
+                    <div>
+                        @if ($ticket->status == 1)
+                            <x-button md wire:click="closeTicket" class="text-right font-medium leading-6"
+                                icon="x-circle" outline red label="Close ticket" />
+                        @else
+                            <x-button md wire:click="openTicket" class="text-right font-medium leading-6"
+                                icon="check-circle" outline green label="Open ticket" />
+                        @endif
+                    </div>
+                </div>
             </form>
         </div>
     </div>

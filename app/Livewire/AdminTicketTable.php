@@ -53,8 +53,8 @@ final class AdminTicketTable extends PowerGridComponent
             ->add('title')
             ->add('status')
             ->add('status_label', function ($ticket) {
-                return ($ticket->status == "open") ? '<span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700">Open</span>
-            ' : '<span class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700">Closed</span>
+                return ($ticket->status == 1) ? '<span class="inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-xs font-medium text-green-700">Open</span>
+            ' : '<span class="inline-flex items-center rounded-md bg-red-100 px-2 py-1 text-xs font-medium text-red-700">Closed</span>
             ';
             })
             ->add('user_name', function ($ticket) {
@@ -112,34 +112,6 @@ final class AdminTicketTable extends PowerGridComponent
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /></svg> Edit')
                 ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-blue-600 hover:text-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600')
                 ->route('ticket.edit', [$row->id]),
-
-            Button::make('close', '
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg> Close')
-                ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-red-600 hover:text-red-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600')
-                ->openModal('edit-ticket-modal', [$row->id]),
-
-            Button::make('open', '
-                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
-                </svg> Reopen')
-                ->class('inline-flex items-center gap-x-1 bg-transparent px-2.5 py-1.5 text-xs font-semibold text-green-600 hover:text-green-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600')
-                ->openModal('edit-ticket-modal', [$row->id]),
-        ];
-    }
-
-
-    public function actionRules($ticket): array
-    {
-        return [
-            Rule::button('close')
-                ->when(fn ($ticket) => $ticket->status == 'closed')
-                ->hide(),
-
-            Rule::button('open')
-                ->when(fn ($ticket) => $ticket->status == 'open')
-                ->hide(),
         ];
     }
 }

@@ -64,7 +64,7 @@
                     </p>
                     <x-slot name="footer" class="flex justify-end gap-x-4">
                         <x-button flat label="Cancel" x-on:click="close" />
-                        <x-button outline blue label="Deactivate" wire:click="deactivateAccount" />
+                        <x-button outline neutral label="Deactivate" wire:click="deactivateAccount" />
                         <x-button red label="Delete forever" wire:click="deleteAccount" />
                     </x-slot>
                 </x-card>

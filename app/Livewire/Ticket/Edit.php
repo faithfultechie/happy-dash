@@ -31,9 +31,6 @@ class Edit extends Component
             'priority' => ['required', 'string', Rule::in([
                 'low', 'medium', 'high',
             ])],
-            'status' => ['required', 'string', Rule::in([
-                'open', 'closed',
-            ])],
             'attachments.*' => ['file', 'mimes:jpg,png,jpeg', 'nullable'],
             'message' => ['required', 'string'],
         ]);
@@ -63,7 +60,25 @@ class Edit extends Component
         $this->ticket->update($validatedData);
 
         session()->flash('success', 'Ticket updated successfully.');
-        return redirect()->route('dashboard');
+        return redirect()->route('ticket.index');
+    }
+
+    public function closeTicket()
+    {
+        $this->ticket->status = 0;
+        $this->ticket->save();
+
+        session()->flash('success', 'Ticket closed successfully.');
+        return redirect()->route('ticket.index');
+    }
+
+    public function openTicket()
+    {
+        $this->ticket->status = 1;
+        $this->ticket->save();
+
+        session()->flash('success', 'Ticket opened successfully.');
+        return redirect()->route('ticket.index');
     }
 
     public function render()

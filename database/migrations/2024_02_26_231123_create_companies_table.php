@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->string('country')->nullable();
             $table->string('vat_number')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

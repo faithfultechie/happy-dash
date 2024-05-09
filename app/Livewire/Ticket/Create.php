@@ -37,7 +37,7 @@ class Create extends Component
         Ticket::create($validatedData);
 
         session()->flash('success', 'Ticket created successfully.');
-        return redirect()->route('dashboard');
+        return redirect()->route('ticket.index');
     }
     public function render()
     {
