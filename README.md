@@ -1,66 +1,165 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Introduction
 
-## About Laravel
+Cooldash the starter admin dashboard for Laravel you need if you hate filepond uploads
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Laravel Cooldash
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Your shortcut to coding bliss! It's like the express lane for starting your next Laravel project—no traffic jams, just smooth sailing offering features like: authentication, user management, roles and permissions, and more.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Cooldash is designed using [Laravel](http://dev.nodeca.com), [Tailwind CSS](http://dev.nodeca.com), [Livewire](http://dev.nodeca.com) and [Alpine](http://dev.nodeca.com).
 
-## Learning Laravel
+![Minion](https://i.ibb.co/pdmWnYB/Fire-Shot-Capture-004-Page-Title-happy-dash-test.png)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
++ Authentication
++ Registration
++ Profile Management
+  + Disable Login
+  + Force Password Change
++ Password Update
++ Password Confirmation
++ Two Factor Authentication
++ Activity Log
++ Authentication Log ​
++ Permission and Roles
++ FilePond Integration
++ Branding
+  + Site Name
+  + Logo
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Installation
 
-## Laravel Sponsors
+We assume you have a basic knowledge of setting up Laravel and Composer. If you don't, please refer to the [Laravel Installation Documentation](https://laravel.com/docs/8.x/installation). Also, you need NPM installed on your machine. If you don't, please refer to the [NPM Installation Documentation](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Requirements
 
-### Premium Partners
++ PHP 8.1 or higher
++ MySQL 5.7 or higher
++ Composer
++ Node.js
++ NPM
+  
+## Download
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Git Clone (Recommended)
 
-## Contributing
+If you have Git installed on your server, this will be the easiest way to install Cooldash so that you can quickly grab updates.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+`git clone https://github.com/otatechie/happy-dash.git`
 
-## Code of Conduct
+To update moving forward, you'll just run `git pull` to grab the latest.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Download Source
 
-## Security Vulnerabilities
+When you download the source, you're going to download a zip file containing all of the Cooldash files. Download the the latest release from Github.
+You'll then unzip the archive to your new Cooldash installation directory.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Install Dependencies
 
-## License
+Once you have the source downloaded, you'll need to run `composer install` to install all of the dependencies.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Configure Environment
+
+Next, you'll need to copy the `.env.example` file to `.env` and update the values with your own. This section is where you edit configuration file to reflect your own settings, such as your database credentials.
+
+### Required App Settings
+
+In your `.env` file, you'll need to set the following values:
+`FILESYSTEM_DISK=public`  and in your `config/filesystems.php` file, you'll need to set the `public` disk to the following:
+
+```php
+  'public' => [
+            'root' => public_path('uploads'), // or wherever you want to store the files
+        ],
+```
+
+## Finalizing Installation
+
+You should install and build all of the front-end dependencies and migrate your database.
+
+``` bash
+npm install
+npm run build
+php artisan migrate
+```
+
+## Authentication
+
+Laravel Cooldash comes with login, two-factor login, registration, password reset, and email verification out of the box. Under the hood, the authentication portion of Cooldash is powered by [Laravel Fortify](https://github.com/laravel/fortify) package.
+
+## Registration  
+
+Before anyone can use your application, they need to create an account. Email verification is disabled, we recommend enabling it by following the Laravel Fortify documentation. By default, the `rule` requires a password that is at least eight characters in length and contains at least one uppercase and one lowercase letter, one number, and one special character.
+You can change this rule by following Laravel's [validation rule](https://laravel.com/docs/11.x/validation#validating-passwords) guide.
+
+>💡 Go to  `app/Actions/Fortify/CreateNewUser.php` and change the `rule` object
+
+### Profile Management
+
+Cooldash profile management features are accessed by the user using the top-right user profile navigation dropdown menu.
+
+### Two Factor Authentication
+
+Cooldash security features are accessed by the user using the top-right user profile navigation dropdown menu. Add an extra layer of security to your account using two-factor authentication by clicking the enable button.
+
+### Authentication Log
+
+You can view all of the authentication events. Under the hood, Cooldash uses [Laravel Authentication Log](https://github.com/rappasoft/laravel-authentication-log) package which tracks your user's authentication information such as login/logout time, IP, Browser, Location, etc. as well as sends out notifications via mail, slack, or sms for new devices and failed logins.
+>💡 Please read the documentation of [Laravel Authentication Log](https://github.com/rappasoft/laravel-authentication-log)
+
+### Auditing
+
+There is detailed auditing capabilities for Eloquent models. Under the hood, Cooldash uses [Laravel Auditing](https://github.com/owen-it/laravel-auditing), allowing you to keep track of changes made to records, as well as any changes to their attributes.
+>💡 Please read the documentation of [Laravel Auditing](https://github.com/owen-it/laravel-auditing)
+
+### Backup
+
+The backup provides an interface for [Spatie Laravel Backup](https://spatie.be/docs/laravel-backup/v8/introduction) package. It lets you:
+
++ Create a backup
++ Check the health of your backups
++ List all backups
++ Download a backup
++ Delete a backup
++ Monitor used disk storage
+
+>💡 Please read the documentation of [Spatie Laravel Backup](https://spatie.be/docs/laravel-backup/v8/introduction)
+
+### Permission and Roles
+
+The permssion and roles provides an interface for [Laravel Permssion](https://spatie.be/docs/laravel-permission/v6/introduction) package. It lets you:
+
++ Add role
++ Add permission
++ Delete permission
++ Delete role
+
+>💡 Please read the documentation of [Laravel Permssion](https://spatie.be/docs/laravel-permission/v6/introduction)
+
+### Personalisation  
+
+Cooldash is customisable. You can change the logo and application name. To do this, click settings on the left side navigation, click the personalisation link to do this.
+
+### Users  
+
+You can add, edit, delete, and view users. It has the following features:
+
++ Assign role and permissions to users
++ Disable or enable users account
++ Force users to change password on next login
++ Permanently delete user 
+
+#### Credits
+
++ Laravel
+
++ Alpine JS
++ Livewire
++ Wireui
++ Laravel auditing
++ Livewire Powergrid
++ Laravel Permission
++ Wire elements modal
++ Dicebear
